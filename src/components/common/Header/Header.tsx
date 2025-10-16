@@ -1,10 +1,69 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES, NAVIGATION_ITEMS } from '../../../constants/routes';
 import { CONFIG } from '../../../constants/config';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { scrollToElement } from '../../../utils/scrollUtils';
 
 export const Header: React.FC = () => {
   const location = useLocation();
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Services dropdown items
+  const servicesItems = [
+    { label: 'Web Development', sectionId: 'web-development' },
+    { label: 'UI/UX Design', sectionId: 'ui-ux-design' },
+    { label: 'Branding & Graphics', sectionId: 'branding-graphics' },
+    { label: 'AI Integration', sectionId: 'ai-integration' },
+    { label: 'IT Consultation', sectionId: 'it-consultation' }
+  ];
+
+  // Handle mouse enter with delay clear
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsServicesDropdownOpen(true);
+  };
+
+  // Handle mouse leave with delay
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsServicesDropdownOpen(false);
+    }, 150); // 150ms delay to allow moving to dropdown
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsServicesDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Navigate to services page and scroll to section
+  const navigateToService = (sectionId: string) => {
+    // If we're already on the services page, just scroll to the section
+    if (location.pathname === ROUTES.SERVICES) {
+      scrollToElement(sectionId, 80);
+    } else {
+      // Navigate to services page first, then scroll after a short delay
+      window.location.href = `${ROUTES.SERVICES}#${sectionId}`;
+    }
+    setIsServicesDropdownOpen(false);
+  };
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
@@ -24,42 +83,75 @@ export const Header: React.FC = () => {
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {NAVIGATION_ITEMS.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                }`}
-                title={item.description}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link
-              to="/files"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                location.pathname === '/files'
-                  ? 'text-blue-600 bg-blue-50'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-              }`}
-              title="File Explorer - Browse our portfolio files"
-            >
-              📁 Files
-            </Link>
-            <Link
-              to="/magazine"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                location.pathname === '/magazine'
-                  ? 'text-blue-600 bg-blue-50'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-              }`}
-              title="Magazine - Interactive magazine viewer"
-            >
-              📖 Magazine
-            </Link>
+            {NAVIGATION_ITEMS.map((item) => {
+              if (item.path === ROUTES.SERVICES) {
+                return (
+                  <div 
+                    key={item.path} 
+                    className="relative" 
+                    ref={dropdownRef}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <button
+                      onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+                      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1 ${
+                        location.pathname === item.path
+                          ? 'text-blue-600 bg-blue-50'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      }`}
+                      title={item.description}
+                    >
+                      {item.label}
+                      <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${
+                        isServicesDropdownOpen ? 'rotate-180' : ''
+                      }`} />
+                    </button>
+                    
+                    {/* Services Dropdown */}
+                    {isServicesDropdownOpen && (
+                      <>
+                        {/* Invisible bridge to help with mouse movement */}
+                        <div className="absolute top-full left-0 right-0 h-1 bg-transparent" />
+                        <div className="absolute top-full mt-1 left-0 bg-white shadow-lg rounded-xl py-3 px-4 z-50 min-w-48">
+                        <Link
+                          to={ROUTES.SERVICES}
+                          onClick={() => setIsServicesDropdownOpen(false)}
+                          className="block w-full text-left px-3 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200 border-b border-gray-100 mb-2"
+                        >
+                          View All Services
+                        </Link>
+                        {servicesItems.map((service) => (
+                          <button
+                            key={service.label}
+                            onClick={() => navigateToService(service.sectionId)}
+                            className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
+                          >
+                            {service.label}
+                          </button>
+                        ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                );
+              }
+              
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    location.pathname === item.path
+                      ? 'text-blue-600 bg-blue-50'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                  title={item.description}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Mobile menu button */}

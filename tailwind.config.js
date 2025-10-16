@@ -7,6 +7,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Brand colors
+        brand: {
+          navy: '#234E70',
+          navyLight: '#3B6B8F',
+          navyDark: '#1A3A52',
+          orange: '#F5A623',
+          orangeLight: '#F7B84D',
+          orangeDark: '#E0951A',
+          teal: '#1ABC9C',
+          tealLight: '#4DD4B8',
+          tealDark: '#16A085',
+        },
         primary: {
           50: '#eff6ff',
           100: '#dbeafe',
@@ -48,7 +60,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Roboto', 'system-ui', 'sans-serif'],
+        heading: ['Poppins', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace']
       },
       animation: {

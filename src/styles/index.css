@@ -18,26 +18,6 @@
 }
 
 @layer components {
-  /* File Explorer Styles */
-  .file-explorer {
-    @apply bg-white rounded-lg shadow-lg border border-gray-200;
-  }
-  
-  .file-tab {
-    @apply px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 border-r border-gray-200 cursor-pointer transition-colors duration-200;
-  }
-  
-  .file-tab.active {
-    @apply text-blue-600 bg-blue-50 border-b-2 border-blue-600;
-  }
-  
-  .file-tree-item {
-    @apply flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors duration-200;
-  }
-  
-  .file-tree-item.selected {
-    @apply bg-blue-100 text-blue-700;
-  }
   
   /* Card Components */
   .card {

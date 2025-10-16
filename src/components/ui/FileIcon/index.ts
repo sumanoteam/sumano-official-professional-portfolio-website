@@ -1,2 +1,0 @@
-export { FileIcon } from './FileIcon';
-

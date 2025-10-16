@@ -7,13 +7,10 @@ import {
   LightBulbIcon,
   ShieldCheckIcon,
   GlobeAltIcon,
-  CpuChipIcon,
-  CloudIcon,
-  ServerIcon,
-  CircleStackIcon as DatabaseIcon,
-  CubeIcon,
-  SparklesIcon
+  CloudIcon
 } from '@heroicons/react/24/outline';
+import { TeamSection } from '../../components/team/TeamSection';
+import { TEAM_MEMBERS } from '../../constants/team';
 
 // Official React Logo - Simple atom design
 const ReactLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
@@ -33,56 +30,6 @@ const TypeScriptLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8
   </svg>
 );
 
-// Official Next.js Logo
-const NextJSLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M11.572 0c-.176 0-.31.001-.358.012a6.26 6.26 0 0 0-.633.12c-.306.08-.573.186-.804.32A5.64 5.64 0 0 0 8.88 1.08a5.52 5.52 0 0 0-.51.51 5.64 5.64 0 0 0-.32.805c-.134.23-.24.498-.32.804a6.26 6.26 0 0 0-.12.633c-.011.048-.012.182-.012.358v8.286c0 .176.001.31.012.358.08.306.186.573.32.804.08.138.17.263.32.51.15.247.26.438.51.633.25.194.48.32.805.32.23.134.498.24.804.32.23.08.498.12.633.12.048.011.182.012.358.012h8.286c.176 0 .31-.001.358-.012.306-.08.573-.186.804-.32.138-.08.263-.17.51-.32.247-.15.438-.26.633-.51.194-.25.32-.48.32-.805.134-.23.24-.498.32-.804.08-.23.12-.498.12-.633.011-.048.012-.182.012-.358V5.214c0-.176-.001-.31-.012-.358a6.26 6.26 0 0 0-.12-.633 5.64 5.64 0 0 0-.32-.804 5.52 5.52 0 0 0-.51-.51 5.64 5.64 0 0 0-.805-.32A6.26 6.26 0 0 0 20.5 2.012C20.452 2.001 20.318 2 20.142 2H11.572z" fill="#000"/>
-    <path d="M22.459 6.414l-9.333 14.744a.5.5 0 0 1-.414.22H12.3a.5.5 0 0 1-.414-.22L2.553 6.414a.5.5 0 0 1 .414-.78h1.412a.5.5 0 0 1 .414.22l7.119 11.25 7.119-11.25a.5.5 0 0 1 .414-.22h1.412a.5.5 0 0 1 .414.78z" fill="#fff"/>
-  </svg>
-);
-
-// Official Vue.js Logo
-const VueJSLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z" fill="#4FC08D"/>
-  </svg>
-);
-
-// Official Angular Logo
-const AngularLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M9.93 12.645h4.134L12 8.43l-2.07 4.215zM12 1L.96 4.26l1.638 14.57L12 23l9.402-4.17L23.04 4.26 12 1zm6.44 15.346L12 20.744l-6.44-4.398L5.04 5.74 12 3.28l6.96 2.46-1.52 10.807z" fill="#DD0031"/>
-  </svg>
-);
-
-// Official Node.js Logo
-const NodeJSLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-1c-.9 0-1.64.58-1.9 1.39-.26.81.01 1.69.65 2.18.64.49 1.54.49 2.18 0 .64-.49.91-1.37.65-2.18z" fill="#339933"/>
-  </svg>
-);
-
-// Official Python Logo - Two intertwined snakes
-const PythonLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-1c-.9 0-1.64.58-1.9 1.39-.26.81.01 1.69.65 2.18.64.49 1.54.49 2.18 0 .64-.49.91-1.37.65-2.18z" fill="#3776AB"/>
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-1c-.9 0-1.64.58-1.9 1.39-.26.81.01 1.69.65 2.18.64.49 1.54.49 2.18 0 .64-.49.91-1.37.65-2.18z" fill="#FFD43B"/>
-  </svg>
-);
-
-// Official PostgreSQL Logo - Elephant head
-const PostgreSQLLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-1c-.9 0-1.64.58-1.9 1.39-.26.81.01 1.69.65 2.18.64.49 1.54.49 2.18 0 .64-.49.91-1.37.65-2.18z" fill="#336791"/>
-  </svg>
-);
-
-// Official MongoDB Logo - Leaf
-const MongoDBLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
-  <svg viewBox="0 0 24 24" className={className}>
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1s-1 .45-1 1v3h-1c-.9 0-1.64.58-1.9 1.39-.26.81.01 1.69.65 2.18.64.49 1.54.49 2.18 0 .64-.49.91-1.37.65-2.18z" fill="#47A248"/>
-  </svg>
-);
 
 export const AboutPage: React.FC = () => {
   const stats = [
@@ -168,12 +115,12 @@ export const AboutPage: React.FC = () => {
     },
     { 
       name: 'Vue.js', 
-      icon: <VueJSLogo className="h-12 w-12" />,
+      icon: <img src="/assets/icons/vue-logo.svg" alt="Vue.js" className="h-12 w-12 object-contain" />,
       color: 'text-green-400'
     },
     { 
       name: 'Angular', 
-      icon: <AngularLogo className="h-12 w-12" />,
+      icon: <img src="/assets/icons/angular-logo.svg" alt="Angular" className="h-12 w-12 object-contain" />,
       color: 'text-red-500'
     }
   ];
@@ -243,6 +190,9 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Our Team Section */}
+      <TeamSection members={TEAM_MEMBERS} />
 
       {/* Values Section */}
       <div className="py-16 bg-white">

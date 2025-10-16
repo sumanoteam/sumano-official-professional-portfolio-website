@@ -1,27 +1,175 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+// Using simple SVG icons instead of react-icons to avoid TypeScript issues
+import { ServiceHero } from './components/ServiceHero';
+import { ServiceCard } from './components/ServiceCard';
+import { MobileServicesNav } from './components/MobileServicesNav';
+import { FloatingActionButton } from './components/FloatingActionButton';
+import { scrollToElement } from '../../utils/scrollUtils';
 
 export const ServicesPage: React.FC = () => {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  // Handle scrolling to section when page loads with hash
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const elementId = hash.substring(1); // Remove the # symbol
+        // Wait a bit for the page to render, then scroll
+        setTimeout(() => {
+          scrollToElement(elementId, 80);
+        }, 100);
+      }
+    };
+
+    // Handle initial load
+    handleHashScroll();
+
+    // Handle hash changes (in case user navigates with hash)
+    window.addEventListener('hashchange', handleHashScroll);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashScroll);
+    };
+  }, []);
+
+  // Services data following DRY principles
+  const servicesData = [
+    {
+      id: 'web-development',
+      title: 'Web Development',
+      description: 'We craft fast, secure, and scalable web applications using modern frameworks like React, Next.js, and Node.js. Our solutions are built for performance and designed for growth.',
+      features: [
+        'Responsive UI/UX design',
+        'SEO-friendly architecture',
+        'API & Database integration',
+        'Performance optimization',
+        'Cross-browser compatibility',
+        'Mobile-first approach'
+      ],
+      icon: () => (
+        <svg className="w-8 h-8 text-[#3b82f6]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 3a1 1 0 011-1h6a1 1 0 011 1v1h3a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1h3V3zM6 5v10h12V5H6zm2 2h8v6H8V7z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'ui-ux-design',
+      title: 'UI/UX Design',
+      description: 'We create intuitive and engaging user experiences that drive conversions and user satisfaction. Our designs are based on user research and industry best practices.',
+      features: [
+        'User research & analysis',
+        'Wireframing & prototyping',
+        'Visual design & branding',
+        'Usability testing',
+        'Design system creation',
+        'Accessibility compliance'
+      ],
+      icon: () => (
+        <svg className="w-8 h-8 text-[#3b82f6]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'branding-graphics',
+      title: 'Branding & Graphics',
+      description: 'We help establish your brand identity through compelling visual design, logo creation, and comprehensive brand guidelines that resonate with your target audience.',
+      features: [
+        'Logo design & identity',
+        'Brand guidelines',
+        'Marketing materials',
+        'Social media graphics',
+        'Print design',
+        'Brand strategy consultation'
+      ],
+      icon: () => (
+        <svg className="w-8 h-8 text-[#3b82f6]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'ai-integration',
+      title: 'AI Integration & Automation',
+      description: 'We integrate artificial intelligence and automation solutions to streamline your business processes, improve efficiency, and provide intelligent insights.',
+      features: [
+        'AI-powered chatbots',
+        'Process automation',
+        'Machine learning models',
+        'Data analysis & insights',
+        'Predictive analytics',
+        'Custom AI solutions'
+      ],
+      icon: () => (
+        <svg className="w-8 h-8 text-[#3b82f6]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      )
+    },
+    {
+      id: 'it-consultation',
+      title: 'IT Consultation & Maintenance',
+      description: 'We provide comprehensive IT consulting services to help you make informed technology decisions and maintain your systems for optimal performance.',
+      features: [
+        'Technology strategy',
+        'System architecture review',
+        'Security assessments',
+        'Performance monitoring',
+        '24/7 technical support',
+        'Infrastructure optimization'
+      ],
+      icon: () => (
+        <svg className="w-8 h-8 text-[#3b82f6]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+        </svg>
+      )
+    }
+  ];
+
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Our Services
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive technology solutions for your business needs.
-          </p>
-        </div>
-        
-        <div className="card">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-            Coming Soon
-          </h2>
-          <p className="text-gray-600">
-            This page is under development. We'll showcase our services here soon.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen">
+      {/* Mobile Navigation */}
+      <MobileServicesNav 
+        isOpen={isMobileNavOpen} 
+        onToggle={() => setIsMobileNavOpen(!isMobileNavOpen)} 
+      />
+      
+      {/* Hero Section */}
+      <ServiceHero />
+      
+      {/* Services Sections */}
+      {servicesData.map((service, index) => (
+        <ServiceCard
+          key={service.id}
+          id={service.id}
+          title={service.title}
+          description={service.description}
+          features={service.features}
+          icon={service.icon}
+          backgroundColor={index % 2 === 0 ? 'white' : 'gray'}
+          isReversed={index % 2 === 1}
+        />
+      ))}
+      
+      {/* Call to Action Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="py-20 bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] text-white text-center"
+      >
+        <h3 className="text-3xl font-semibold mb-4">Ready to Bring Your Ideas to Life?</h3>
+        <p className="mb-8">Let's collaborate to turn your vision into a high-performing digital experience.</p>
+        <button className="bg-[#22c55e] hover:bg-[#16a34a] text-white px-6 py-3 rounded-lg font-medium transition-all duration-300">
+          Get in Touch
+        </button>
+      </motion.section>
+      
+      {/* Floating Action Button for Mobile */}
+      <FloatingActionButton />
     </div>
   );
 };

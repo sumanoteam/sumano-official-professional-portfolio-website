@@ -17,9 +17,6 @@ export const ROUTES = {
   // Portfolio routes
   PROJECT: (id: string) => `/portfolio/${id}`,
   
-  // File explorer routes
-  FILE_EXPLORER: '/files',
-  FILE: (path: string) => `/files/${path}`,
 } as const;
 
 export const ROUTE_LABELS = {

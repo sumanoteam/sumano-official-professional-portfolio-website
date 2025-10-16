@@ -1,6 +1,6 @@
-# Sumano Team Portfolio Website
+# Sumano Tech Solution
 
-A professional portfolio website for the Sumano team, designed with a file explorer interface and enterprise-standard architecture.
+A professional tech solutions website for modern businesses, designed with a file explorer interface and enterprise-standard architecture.
 
 ## 🚀 Features
 
@@ -23,7 +23,7 @@ A professional portfolio website for the Sumano team, designed with a file explo
 ## 📁 Project Structure
 
 ```
-sumano-portfolio/
+sumano-tech-solution/
 ├── public/                 # Static assets
 ├── src/
 │   ├── components/         # Reusable UI components
@@ -66,7 +66,7 @@ sumano-portfolio/
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd sumano-portfolio
+cd sumano-tech-solution
 ```
 
 2. Install dependencies:

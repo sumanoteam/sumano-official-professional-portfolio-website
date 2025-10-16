@@ -29,10 +29,10 @@ export const HomePage: React.FC = () => {
               View Our Work
             </Link>
             <Link
-              to="/files"
+              to={ROUTES.SERVICES}
               className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 text-lg"
             >
-              📁 Browse Files
+              Our Services
             </Link>
           </div>
         </div>
