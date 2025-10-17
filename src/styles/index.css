@@ -8,12 +8,47 @@
   }
   
   body {
-    @apply bg-gray-50 text-gray-900 font-sans;
+    @apply bg-brand-light text-brand-dark font-roboto;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Typography System - Responsive Scale */
+  h1, .h1 { 
+    @apply font-poppins font-bold text-brand-navy;
+    font-size: 2rem; /* Mobile */
+  }
+  
+  h2, .h2 { 
+    @apply font-poppins font-semibold text-brand-navy;
+    font-size: 1.75rem; /* Mobile */
+  }
+  
+  h3, .h3 { 
+    @apply font-poppins font-medium text-brand-navy;
+    font-size: 1.5rem; /* Mobile */
+  }
+  
+  p, .body { 
+    @apply font-roboto text-brand-dark;
+    font-size: 1rem; /* Mobile */
+  }
+  
+  small, .small { 
+    @apply font-roboto text-sm text-gray-600;
+    font-size: 0.875rem; /* Mobile */
+  }
+
+  /* Desktop Typography Scale */
+  @media (min-width: 768px) {
+    h1, .h1 { font-size: 3rem; }
+    h2, .h2 { font-size: 2.5rem; }
+    h3, .h3 { font-size: 2rem; }
+    p, .body { font-size: 1.125rem; }
+    small, .small { font-size: 0.9rem; }
   }
 }
 
@@ -28,21 +63,25 @@
     @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
   
-  /* Button Components */
+  /* Button Components - Brand Colors */
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-6 py-3 font-poppins font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
   
   .btn-primary {
-    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+    @apply bg-brand-orange text-white hover:bg-brand-orangeHover focus:ring-brand-orange/60;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+    @apply bg-brand-navy text-white hover:bg-brand-navyHover focus:ring-brand-navy/60;
+  }
+  
+  .btn-success {
+    @apply bg-brand-teal text-white hover:bg-brand-tealHover focus:ring-brand-teal/60;
   }
   
   .btn-outline {
-    @apply border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500;
+    @apply border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white focus:ring-brand-navy/60;
   }
   
   /* Animation Classes */

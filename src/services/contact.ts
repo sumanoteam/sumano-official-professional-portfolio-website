@@ -3,8 +3,11 @@
 import { CONTACT_ENDPOINTS } from '../constants/contact';
 
 export interface ContactFormData {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  phone: string;
+  country?: string;
   company?: string;
   subject: string;
   message: string;
@@ -30,8 +33,10 @@ const sendViaEmailJS = async (formData: ContactFormData): Promise<ContactRespons
     const emailjs = await import('@emailjs/browser');
 
     const templateParams = {
-      from_name: formData.name,
+      from_name: `${formData.firstName} ${formData.lastName}`,
       from_email: formData.email,
+      phone: formData.phone,
+      country: formData.country || 'Not provided',
       company: formData.company || 'Not provided',
       subject: formData.subject,
       message: formData.message,
@@ -121,7 +126,7 @@ export const sendContactMessage = async (formData: ContactFormData): Promise<Con
   }
 
   // Validate required fields
-  if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+  if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.subject || !formData.message) {
     return {
       success: false,
       message: 'Please fill in all required fields'
@@ -166,11 +171,18 @@ export const sendContactMessage = async (formData: ContactFormData): Promise<Con
 export const validateContactForm = (formData: ContactFormData): { isValid: boolean; errors: Record<string, string> } => {
   const errors: Record<string, string> = {};
 
-  // Name validation
-  if (!formData.name || formData.name.trim().length < 2) {
-    errors.name = 'Name must be at least 2 characters';
-  } else if (formData.name.length > 100) {
-    errors.name = 'Name must be less than 100 characters';
+  // First Name validation
+  if (!formData.firstName || formData.firstName.trim().length < 2) {
+    errors.firstName = 'First name must be at least 2 characters';
+  } else if (formData.firstName.length > 50) {
+    errors.firstName = 'First name must be less than 50 characters';
+  }
+
+  // Last Name validation
+  if (!formData.lastName || formData.lastName.trim().length < 2) {
+    errors.lastName = 'Last name must be at least 2 characters';
+  } else if (formData.lastName.length > 50) {
+    errors.lastName = 'Last name must be less than 50 characters';
   }
 
   // Email validation
@@ -178,6 +190,13 @@ export const validateContactForm = (formData: ContactFormData): { isValid: boole
     errors.email = 'Email is required';
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
     errors.email = 'Please enter a valid email address';
+  }
+
+  // Phone validation
+  if (!formData.phone || formData.phone.trim().length < 10) {
+    errors.phone = 'Phone number must be at least 10 characters';
+  } else if (formData.phone.length > 20) {
+    errors.phone = 'Phone number must be less than 20 characters';
   }
 
   // Subject validation

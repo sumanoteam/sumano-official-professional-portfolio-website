@@ -13,7 +13,7 @@ export const PortfolioPage: React.FC = () => {
     : portfolioProjects.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen py-12 bg-gradient-to-br from-brand-navy to-brand-navyHover text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-12"
@@ -21,10 +21,10 @@ export const PortfolioPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="h1 mb-4 text-white">
             Our Portfolio
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
             Discover our successful projects and innovative solutions that have helped 
             businesses transform their digital presence and achieve their goals.
           </p>
@@ -43,8 +43,8 @@ export const PortfolioPage: React.FC = () => {
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                  ? 'bg-brand-orange text-white shadow-lg'
+                  : 'bg-white/20 text-white hover:bg-white/30 hover:text-white'
               }`}
             >
               {category}

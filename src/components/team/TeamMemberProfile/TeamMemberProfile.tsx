@@ -69,7 +69,7 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
             />
             <div className="text-left">
               <motion.h2 
-                className="text-3xl font-heading font-semibold text-brand-navy mb-2"
+                className="h2 mb-2"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
@@ -85,7 +85,7 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
                 {role} | {title}
               </motion.p>
               <motion.p 
-                className="text-gray-700 font-roboto leading-relaxed mb-6"
+                className="body leading-relaxed mb-6"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
@@ -151,17 +151,17 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-2xl font-heading font-semibold text-brand-navy mb-6">
+            <h3 className="h2 mb-6">
               Professional Summary
             </h3>
             
             <div className="space-y-8">
               {/* Education */}
               <div>
-                <h4 className="text-lg font-heading font-medium text-brand-navy mb-3">Education</h4>
+                <h4 className="h3 mb-3">Education</h4>
                 <ul className="space-y-2">
                   {resumeContent.education.map((edu, index) => (
-                    <li key={index} className="text-gray-700 font-roboto">
+                    <li key={index} className="body">
                       • {edu}
                     </li>
                   ))}
@@ -170,10 +170,10 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
 
               {/* Experience */}
               <div>
-                <h4 className="text-lg font-heading font-medium text-brand-navy mb-3">Experience</h4>
+                <h4 className="h3 mb-3">Experience</h4>
                 <ul className="space-y-2">
                   {resumeContent.experience.map((exp, index) => (
-                    <li key={index} className="text-gray-700 font-roboto">
+                    <li key={index} className="body">
                       • {exp}
                     </li>
                   ))}
@@ -182,10 +182,10 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
 
               {/* Skills */}
               <div>
-                <h4 className="text-lg font-heading font-medium text-brand-navy mb-3">Key Skills</h4>
+                <h4 className="h3 mb-3">Key Skills</h4>
                 <ul className="space-y-2">
                   {resumeContent.skills.map((skill, index) => (
-                    <li key={index} className="text-gray-700 font-roboto">
+                    <li key={index} className="body">
                       • {skill}
                     </li>
                   ))}
@@ -194,10 +194,10 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
 
               {/* Achievements */}
               <div>
-                <h4 className="text-lg font-heading font-medium text-brand-navy mb-3">Key Achievements</h4>
+                <h4 className="h3 mb-3">Key Achievements</h4>
                 <ul className="space-y-2">
                   {resumeContent.achievements.map((achievement, index) => (
-                    <li key={index} className="text-gray-700 font-roboto">
+                    <li key={index} className="body">
                       • {achievement}
                     </li>
                   ))}
@@ -255,13 +255,14 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
       />
-      <h3 className="text-xl font-heading font-semibold text-brand-navy mb-2">{name}</h3>
+      <h3 className="h3 mb-2">{name}</h3>
       <p className="text-brand-orange font-medium mb-2">{role}</p>
-      <p className="text-gray-600 text-sm mb-4 font-roboto">{title}</p>
+      <p className="small mb-4">{title}</p>
       <Button 
         as={Link} 
         to={`/team/${member.id}`}
-        className="bg-brand-teal text-white px-6 py-2 rounded-xl hover:bg-brand-tealDark transition-colors w-full"
+        variant="success"
+        className="w-full"
       >
         Learn More
       </Button>

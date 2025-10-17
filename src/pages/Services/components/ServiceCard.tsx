@@ -36,16 +36,16 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             viewport={{ once: true }}
             className="text-center md:text-left"
           >
-            <h2 className="text-3xl font-semibold text-[#1e3a8a] mb-4 flex items-center gap-2">
+            <h2 className="h2 mb-4 flex items-center gap-2">
               {icon()}
               {title}
             </h2>
             
-            <p className="text-[#475569] mb-4">
+            <p className="body mb-4">
               {description}
             </p>
             
-            <ul className="space-y-2 text-[#334155]">
+            <ul className="space-y-2 text-brand-dark/80">
               {features.map((feature, index) => (
                 <motion.li
                   key={index}
@@ -55,7 +55,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
                   viewport={{ once: true }}
                   className="flex items-center gap-2"
                 >
-                  <span className="text-[#22c55e]">✅</span>
+                  <span className="text-brand-teal">✅</span>
                   <span>{feature}</span>
                 </motion.li>
               ))}
@@ -68,7 +68,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
               viewport={{ once: true }}
               className="mt-8"
             >
-              <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#3b82f6] hover:bg-[#2563eb] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm sm:text-base">
+              <button className="btn btn-primary px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
                 Learn More
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

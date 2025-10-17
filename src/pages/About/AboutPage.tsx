@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   CheckCircleIcon, 
   UserGroupIcon, 
@@ -11,6 +12,10 @@ import {
 } from '@heroicons/react/24/outline';
 import { TeamSection } from '../../components/team/TeamSection';
 import { TEAM_MEMBERS } from '../../constants/team';
+import { Container } from '../../components/layout/Container';
+import { HeroBackground } from '../../components/ui/HeroBackground';
+import { HERO_BACKGROUNDS, HERO_HEIGHTS } from '../../constants/heroBackgrounds';
+import { ROUTES } from '../../constants/routes';
 
 // Official React Logo - Simple atom design
 const ReactLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
@@ -128,39 +133,59 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <HeroBackground
+        backgroundImage={HERO_BACKGROUNDS.ABOUT.image}
+        overlayOpacity={HERO_BACKGROUNDS.ABOUT.overlayOpacity}
+        gradientFrom={HERO_BACKGROUNDS.ABOUT.gradientFrom}
+        gradientTo={HERO_BACKGROUNDS.ABOUT.gradientTo}
+        className={HERO_HEIGHTS.STANDARD}
+      >
+        <Container>
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-6">About Sumano</h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <h1 className="h1 mb-6 text-white">About Sumano Tech Solution</h1>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-8">
               We are a passionate team of developers, designers, and innovators dedicated to creating 
               exceptional digital experiences that drive business success.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to={`${ROUTES.ABOUT}#our-team`}
+                className="btn btn-primary px-8 py-3 text-lg"
+              >
+                Meet Our Team
+              </Link>
+              <Link
+                to={ROUTES.CONTACT}
+                className="btn btn-outline border-white text-white hover:bg-white hover:text-brand-navy px-8 py-3 text-lg"
+              >
+                Get in Touch
+              </Link>
+            </div>
           </div>
-        </div>
-      </div>
+        </Container>
+      </HeroBackground>
 
       {/* Stats Section */}
       <div className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-4xl font-bold text-brand-orange mb-2">{stat.value}</div>
+                <div className="text-brand-dark/80">{stat.label}</div>
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* Our Story Section */}
       <div className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <h2 className="h2 mb-6">Our Story</h2>
+              <div className="space-y-4 text-brand-dark/80 leading-relaxed">
                 <p>
                   Founded in 2016, Sumano began as a small team of passionate developers who believed 
                   technology could solve real-world problems. What started as a vision to create 
@@ -177,18 +202,18 @@ export const AboutPage: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg p-8">
+            <div className="bg-gradient-to-br from-brand-orange/10 to-brand-orange/20 rounded-lg p-8">
               <div className="text-center">
-                <RocketLaunchIcon className="h-16 w-16 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-                <p className="text-gray-700">
+                <RocketLaunchIcon className="h-16 w-16 text-brand-orange mx-auto mb-4" />
+                <h3 className="h3 mb-4">Our Mission</h3>
+                <p className="text-brand-dark/80">
                   To empower businesses through innovative technology solutions that are not just 
                   functional, but transformative.
                 </p>
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* Our Team Section */}
@@ -196,10 +221,10 @@ export const AboutPage: React.FC = () => {
 
       {/* Values Section */}
       <div className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="h2 mb-4">Our Values</h2>
+            <p className="text-xl text-brand-dark/80 max-w-3xl mx-auto">
               These core values guide everything we do and shape our company culture.
             </p>
           </div>
@@ -207,20 +232,20 @@ export const AboutPage: React.FC = () => {
             {values.map((value, index) => (
               <div key={index} className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
                 <div className="flex justify-center mb-4">{value.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="h3 mb-3">{value.title}</h3>
+                <p className="text-brand-dark/80">{value.description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* Technology Expertise */}
       <div className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Technology Expertise</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="h2 mb-4">Technology Expertise</h2>
+            <p className="text-xl text-brand-dark/80 max-w-3xl mx-auto">
               We stay at the forefront of technology, mastering the tools and frameworks that power modern applications.
             </p>
           </div>
@@ -234,66 +259,66 @@ export const AboutPage: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
-        </div>
+        </Container>
+      </div>
         
       {/* Why Choose Us */}
-      <div className="py-16 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-16 bg-brand-light">
+        <Container>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Sumano?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="h2 mb-4">Why Choose Sumano?</h2>
+            <p className="text-xl text-brand-dark/80 max-w-3xl mx-auto">
               We combine technical expertise with business acumen to deliver solutions that truly matter.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-brand-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <GlobeAltIcon className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Global Perspective</h3>
-              <p className="text-gray-600">
+              <h3 className="h3 mb-3">Global Perspective</h3>
+              <p className="text-brand-dark/80">
                 We understand diverse markets and create solutions that work across different cultures and regions.
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-brand-teal rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <CheckCircleIcon className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Proven Track Record</h3>
-              <p className="text-gray-600">
+              <h3 className="h3 mb-3">Proven Track Record</h3>
+              <p className="text-brand-dark/80">
                 Our portfolio speaks for itself with successful projects across various industries and scales.
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-brand-navy rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <UserGroupIcon className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Dedicated Support</h3>
-          <p className="text-gray-600">
+              <h3 className="h3 mb-3">Dedicated Support</h3>
+              <p className="text-brand-dark/80">
                 We're not just developers; we're your long-term technology partners committed to your success.
               </p>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* Call to Action */}
-      <div className="py-16 bg-blue-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Work With Us?</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+      <div className="py-16 bg-brand-navy text-white">
+        <Container className="text-center">
+          <h2 className="h2 mb-4 text-white">Ready to Work With Us?</h2>
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Let's discuss your project and see how we can help bring your vision to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <button className="btn btn-primary px-8 py-3">
               Start a Project
             </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
+            <button className="btn btn-outline border-white text-white hover:bg-white hover:text-brand-navy px-8 py-3">
               View Our Work
             </button>
           </div>
-        </div>
+        </Container>
       </div>
     </div>
   );

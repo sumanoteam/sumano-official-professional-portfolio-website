@@ -3,10 +3,10 @@
 export const ROUTES = {
   HOME: '/',
   ABOUT: '/about',
-  TEAM: '/team',
   SERVICES: '/services',
   PORTFOLIO: '/portfolio',
   CONTACT: '/contact',
+  OMS: '/oms',
   
   // Team member routes
   TEAM_MEMBER: (id: string) => `/team/${id}`,
@@ -22,10 +22,10 @@ export const ROUTES = {
 export const ROUTE_LABELS = {
   [ROUTES.HOME]: 'Home',
   [ROUTES.ABOUT]: 'About Us',
-  [ROUTES.TEAM]: 'Our Team',
   [ROUTES.SERVICES]: 'Services',
   [ROUTES.PORTFOLIO]: 'Portfolio',
   [ROUTES.CONTACT]: 'Contact',
+  [ROUTES.OMS]: 'OMS',
 } as const;
 
 export const NAVIGATION_ITEMS = [
@@ -40,12 +40,6 @@ export const NAVIGATION_ITEMS = [
     label: ROUTE_LABELS[ROUTES.ABOUT],
     icon: 'BuildingOfficeIcon',
     description: 'Learn about our company'
-  },
-  {
-    path: ROUTES.TEAM,
-    label: ROUTE_LABELS[ROUTES.TEAM],
-    icon: 'UsersIcon',
-    description: 'Meet our talented team'
   },
   {
     path: ROUTES.SERVICES,

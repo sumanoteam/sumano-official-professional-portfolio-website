@@ -2,7 +2,7 @@ import React from 'react';
 
 interface BaseButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'success' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   onClick?: () => void;
   className?: string;
@@ -35,6 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   const variantClasses = {
     primary: 'btn-primary',
     secondary: 'btn-secondary',
+    success: 'btn-success',
     outline: 'btn-outline'
   };
   const sizeClasses = {

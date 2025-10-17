@@ -11,15 +11,38 @@ export const CONTACT_CONTENT = {
     TITLE: "Send us a message",
     SUBTITLE: "Fill out the form below and we'll get back to you within 24-48 hours.",
     FIELDS: {
-      NAME: {
-        LABEL: "Full Name",
-        PLACEHOLDER: "Enter your full name",
+      FIRST_NAME: {
+        LABEL: "First Name",
+        PLACEHOLDER: "Enter your first name",
+        REQUIRED: true
+      },
+      LAST_NAME: {
+        LABEL: "Last Name",
+        PLACEHOLDER: "Enter your last name",
         REQUIRED: true
       },
       EMAIL: {
-        LABEL: "Email Address",
+        LABEL: "Email",
         PLACEHOLDER: "Enter your email address",
         REQUIRED: true
+      },
+      PHONE: {
+        LABEL: "Phone",
+        PLACEHOLDER: "Enter your phone number",
+        REQUIRED: true
+      },
+      COUNTRY: {
+        LABEL: "Country",
+        PLACEHOLDER: "Select your country",
+        REQUIRED: false,
+        OPTIONS: [
+          { value: '', label: 'Select your country' },
+          { value: 'gambia', label: 'Gambia' },
+          { value: 'senegal', label: 'Senegal' },
+          { value: 'ghana', label: 'Ghana' },
+          { value: 'nigeria', label: 'Nigeria' },
+          { value: 'other', label: 'Other' }
+        ]
       },
       COMPANY: {
         LABEL: "Company (Optional)",

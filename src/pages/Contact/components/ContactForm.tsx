@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { CONTACT_CONTENT } from '../../../constants/contact';
 import { sendContactMessage, validateContactForm, ContactFormData } from '../../../services/contact';
 import { Button } from '../../../components/ui/Button/Button';
+import { FloatingLabelInput } from '../../../components/ui/FloatingLabelInput';
+import { FloatingLabelSelect } from '../../../components/ui/FloatingLabelSelect';
+import { FloatingLabelTextarea } from '../../../components/ui/FloatingLabelTextarea';
 
 interface FormErrors {
   [key: string]: string;
@@ -10,8 +13,11 @@ interface FormErrors {
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
+    phone: '',
+    country: '',
     company: '',
     subject: '',
     message: '',
@@ -62,8 +68,11 @@ export const ContactForm: React.FC = () => {
         setSubmitMessage(CONTACT_CONTENT.FORM.SUCCESS_MESSAGE);
         // Reset form
         setFormData({
-          name: '',
+          firstName: '',
+          lastName: '',
           email: '',
+          phone: '',
+          country: '',
           company: '',
           subject: '',
           message: '',
@@ -91,10 +100,10 @@ export const ContactForm: React.FC = () => {
       id="contact-form"
     >
       <div className="mb-6">
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#234E70] mb-2">
+        <h2 className="h2 mb-2">
           {CONTACT_CONTENT.FORM.TITLE}
         </h2>
-        <p className="text-gray-600">
+        <p className="text-brand-dark/80">
           {CONTACT_CONTENT.FORM.SUBTITLE}
         </p>
       </div>
@@ -102,7 +111,7 @@ export const ContactForm: React.FC = () => {
       {/* Status Messages */}
       {submitStatus === 'success' && (
         <div 
-          className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800"
+          className="mb-6 p-4 bg-brand-teal/10 border border-brand-teal/20 rounded-lg text-brand-teal"
           role="alert"
         >
           <div className="flex items-center">
@@ -141,156 +150,149 @@ export const ContactForm: React.FC = () => {
           aria-hidden="true"
         />
 
-        {/* Name Field */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-            {CONTACT_CONTENT.FORM.FIELDS.NAME.LABEL}
-            {CONTACT_CONTENT.FORM.FIELDS.NAME.REQUIRED && <span className="text-red-500 ml-1">*</span>}
-          </label>
-          <input
+        {/* First Name and Last Name Fields - Side by Side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FloatingLabelInput
+            id="firstName"
+            name="firstName"
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            value={formData.firstName}
             onChange={handleInputChange}
-            placeholder={CONTACT_CONTENT.FORM.FIELDS.NAME.PLACEHOLDER}
-            className={`w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F5A623] transition-colors ${
-              errors.name ? 'border-red-300' : 'border-gray-300'
-            }`}
-            {...(errors.name && { 'aria-invalid': 'true' })}
-            aria-describedby={errors.name ? 'name-error' : undefined}
+            label={CONTACT_CONTENT.FORM.FIELDS.FIRST_NAME.LABEL}
+            placeholder={CONTACT_CONTENT.FORM.FIELDS.FIRST_NAME.PLACEHOLDER}
+            required={CONTACT_CONTENT.FORM.FIELDS.FIRST_NAME.REQUIRED}
+            error={errors.firstName}
             disabled={isSubmitting}
+            aria-describedby={errors.firstName ? 'firstName-error' : undefined}
+            aria-invalid={!!errors.firstName}
           />
-          {errors.name && (
-            <p id="name-error" className="mt-1 text-sm text-red-600" role="alert">
-              {errors.name}
-            </p>
-          )}
+          
+          <FloatingLabelInput
+            id="lastName"
+            name="lastName"
+            type="text"
+            value={formData.lastName}
+            onChange={handleInputChange}
+            label={CONTACT_CONTENT.FORM.FIELDS.LAST_NAME.LABEL}
+            placeholder={CONTACT_CONTENT.FORM.FIELDS.LAST_NAME.PLACEHOLDER}
+            required={CONTACT_CONTENT.FORM.FIELDS.LAST_NAME.REQUIRED}
+            error={errors.lastName}
+            disabled={isSubmitting}
+            aria-describedby={errors.lastName ? 'lastName-error' : undefined}
+            aria-invalid={!!errors.lastName}
+          />
         </div>
 
         {/* Email Field */}
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-            {CONTACT_CONTENT.FORM.FIELDS.EMAIL.LABEL}
-            {CONTACT_CONTENT.FORM.FIELDS.EMAIL.REQUIRED && <span className="text-red-500 ml-1">*</span>}
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder={CONTACT_CONTENT.FORM.FIELDS.EMAIL.PLACEHOLDER}
-            className={`w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F5A623] transition-colors ${
-              errors.email ? 'border-red-300' : 'border-gray-300'
-            }`}
-            {...(errors.email && { 'aria-invalid': 'true' })}
-            aria-describedby={errors.email ? 'email-error' : undefined}
-            disabled={isSubmitting}
-          />
-          {errors.email && (
-            <p id="email-error" className="mt-1 text-sm text-red-600" role="alert">
-              {errors.email}
-            </p>
-          )}
-        </div>
+        <FloatingLabelInput
+          id="email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          label={CONTACT_CONTENT.FORM.FIELDS.EMAIL.LABEL}
+          placeholder={CONTACT_CONTENT.FORM.FIELDS.EMAIL.PLACEHOLDER}
+          required={CONTACT_CONTENT.FORM.FIELDS.EMAIL.REQUIRED}
+          error={errors.email}
+          disabled={isSubmitting}
+          aria-describedby={errors.email ? 'email-error' : undefined}
+          aria-invalid={!!errors.email}
+        />
+
+        {/* Phone Field */}
+        <FloatingLabelInput
+          id="phone"
+          name="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleInputChange}
+          label={CONTACT_CONTENT.FORM.FIELDS.PHONE.LABEL}
+          placeholder={CONTACT_CONTENT.FORM.FIELDS.PHONE.PLACEHOLDER}
+          required={CONTACT_CONTENT.FORM.FIELDS.PHONE.REQUIRED}
+          error={errors.phone}
+          disabled={isSubmitting}
+          aria-describedby={errors.phone ? 'phone-error' : undefined}
+          aria-invalid={!!errors.phone}
+        />
+
+        {/* Country Field */}
+        <FloatingLabelSelect
+          id="country"
+          name="country"
+          value={formData.country || ''}
+          onChange={handleInputChange}
+          label={CONTACT_CONTENT.FORM.FIELDS.COUNTRY.LABEL}
+          options={CONTACT_CONTENT.FORM.FIELDS.COUNTRY.OPTIONS || []}
+          required={CONTACT_CONTENT.FORM.FIELDS.COUNTRY.REQUIRED}
+          error={errors.country}
+          disabled={isSubmitting}
+          aria-describedby={errors.country ? 'country-error' : undefined}
+          aria-invalid={!!errors.country}
+        />
 
         {/* Company Field */}
-        <div>
-          <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-            {CONTACT_CONTENT.FORM.FIELDS.COMPANY.LABEL}
-            {!CONTACT_CONTENT.FORM.FIELDS.COMPANY.REQUIRED && <span className="text-gray-500 ml-1">(Optional)</span>}
-          </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formData.company}
-            onChange={handleInputChange}
-            placeholder={CONTACT_CONTENT.FORM.FIELDS.COMPANY.PLACEHOLDER}
-            className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F5A623] transition-colors"
-            disabled={isSubmitting}
-          />
-        </div>
+        <FloatingLabelInput
+          id="company"
+          name="company"
+          type="text"
+          value={formData.company || ''}
+          onChange={handleInputChange}
+          label={CONTACT_CONTENT.FORM.FIELDS.COMPANY.LABEL}
+          placeholder={CONTACT_CONTENT.FORM.FIELDS.COMPANY.PLACEHOLDER}
+          required={CONTACT_CONTENT.FORM.FIELDS.COMPANY.REQUIRED}
+          error={errors.company}
+          disabled={isSubmitting}
+          aria-describedby={errors.company ? 'company-error' : undefined}
+          aria-invalid={!!errors.company}
+        />
 
         {/* Subject Field */}
-        <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-            {CONTACT_CONTENT.FORM.FIELDS.SUBJECT.LABEL}
-            {CONTACT_CONTENT.FORM.FIELDS.SUBJECT.REQUIRED && <span className="text-red-500 ml-1">*</span>}
-          </label>
-          <input
-            type="text"
-            id="subject"
-            name="subject"
-            value={formData.subject}
-            onChange={handleInputChange}
-            placeholder={CONTACT_CONTENT.FORM.FIELDS.SUBJECT.PLACEHOLDER}
-            className={`w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F5A623] transition-colors ${
-              errors.subject ? 'border-red-300' : 'border-gray-300'
-            }`}
-            {...(errors.subject && { 'aria-invalid': 'true' })}
-            aria-describedby={errors.subject ? 'subject-error' : undefined}
-            disabled={isSubmitting}
-          />
-          {errors.subject && (
-            <p id="subject-error" className="mt-1 text-sm text-red-600" role="alert">
-              {errors.subject}
-            </p>
-          )}
-        </div>
+        <FloatingLabelInput
+          id="subject"
+          name="subject"
+          type="text"
+          value={formData.subject}
+          onChange={handleInputChange}
+          label={CONTACT_CONTENT.FORM.FIELDS.SUBJECT.LABEL}
+          placeholder={CONTACT_CONTENT.FORM.FIELDS.SUBJECT.PLACEHOLDER}
+          required={CONTACT_CONTENT.FORM.FIELDS.SUBJECT.REQUIRED}
+          error={errors.subject}
+          disabled={isSubmitting}
+          aria-describedby={errors.subject ? 'subject-error' : undefined}
+          aria-invalid={!!errors.subject}
+        />
 
         {/* Budget Field */}
-        <div>
-          <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
-            {CONTACT_CONTENT.FORM.FIELDS.BUDGET.LABEL}
-            {!CONTACT_CONTENT.FORM.FIELDS.BUDGET.REQUIRED && <span className="text-gray-500 ml-1">(Optional)</span>}
-          </label>
-          <select
-            id="budget"
-            name="budget"
-            value={formData.budget}
-            onChange={handleInputChange}
-            className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F5A623] transition-colors"
-            disabled={isSubmitting}
-          >
-            {CONTACT_CONTENT.FORM.FIELDS.BUDGET.OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
+        <FloatingLabelSelect
+          id="budget"
+          name="budget"
+          value={formData.budget || ''}
+          onChange={handleInputChange}
+          label={CONTACT_CONTENT.FORM.FIELDS.BUDGET.LABEL}
+          options={CONTACT_CONTENT.FORM.FIELDS.BUDGET.OPTIONS || []}
+          required={CONTACT_CONTENT.FORM.FIELDS.BUDGET.REQUIRED}
+          error={errors.budget}
+          disabled={isSubmitting}
+          aria-describedby={errors.budget ? 'budget-error' : undefined}
+          aria-invalid={!!errors.budget}
+        />
 
         {/* Message Field */}
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-            {CONTACT_CONTENT.FORM.FIELDS.MESSAGE.LABEL}
-            {CONTACT_CONTENT.FORM.FIELDS.MESSAGE.REQUIRED && <span className="text-red-500 ml-1">*</span>}
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleInputChange}
-            placeholder={CONTACT_CONTENT.FORM.FIELDS.MESSAGE.PLACEHOLDER}
-            rows={6}
-            className={`w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F5A623] transition-colors resize-vertical ${
-              errors.message ? 'border-red-300' : 'border-gray-300'
-            }`}
-            {...(errors.message && { 'aria-invalid': 'true' })}
-            aria-describedby={errors.message ? 'message-error' : undefined}
-            disabled={isSubmitting}
-          />
-          {errors.message && (
-            <p id="message-error" className="mt-1 text-sm text-red-600" role="alert">
-              {errors.message}
-            </p>
-          )}
-          <p className="mt-1 text-sm text-gray-500">
-            {formData.message.length}/2000 characters
-          </p>
-        </div>
+        <FloatingLabelTextarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleInputChange}
+          label={CONTACT_CONTENT.FORM.FIELDS.MESSAGE.LABEL}
+          placeholder={CONTACT_CONTENT.FORM.FIELDS.MESSAGE.PLACEHOLDER}
+          required={CONTACT_CONTENT.FORM.FIELDS.MESSAGE.REQUIRED}
+          error={errors.message}
+          disabled={isSubmitting}
+          rows={6}
+          maxLength={2000}
+          aria-describedby={errors.message ? 'message-error' : undefined}
+          aria-invalid={!!errors.message}
+        />
 
         {/* Submit Button */}
         <div className="pt-4">

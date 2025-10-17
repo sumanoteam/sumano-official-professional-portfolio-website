@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { TeamMemberProfile } from '../TeamMemberProfile';
 import { TeamSectionProps } from '../../../types/team';
 import { TEAM_CONTENT } from '../../../constants/team';
+import { Container } from '../../layout/Container';
 
 export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
   const containerVariants = {
@@ -29,8 +30,8 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
   };
 
   return (
-    <section id="our-team" className="bg-gray-50 py-20">
-      <div className="container mx-auto text-center px-6">
+    <section id="our-team" className="bg-brand-light py-20">
+      <Container className="text-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -38,13 +39,13 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
           viewport={{ once: true, margin: "-100px" }}
         >
           <motion.h2 
-            className="text-4xl font-heading font-semibold text-brand-navy mb-4"
+            className="h2 mb-4"
             variants={itemVariants}
           >
             {TEAM_CONTENT.SECTION_TITLE}
           </motion.h2>
           <motion.p 
-            className="text-base font-roboto text-gray-600 max-w-2xl mx-auto mb-10"
+            className="body max-w-2xl mx-auto mb-10"
             variants={itemVariants}
           >
             {TEAM_CONTENT.SECTION_SUBTITLE}
@@ -65,7 +66,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
             ))}
           </motion.div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 };

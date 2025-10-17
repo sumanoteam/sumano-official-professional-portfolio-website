@@ -66,93 +66,110 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to={ROUTES.HOME} className="flex items-center">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-brand-orange rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">S</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-gray-900">
+              <span className="ml-2 text-xl font-bold text-brand-navy">
                 {CONFIG.APP.NAME}
               </span>
             </Link>
           </div>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {NAVIGATION_ITEMS.map((item) => {
-              if (item.path === ROUTES.SERVICES) {
-                return (
-                  <div 
-                    key={item.path} 
-                    className="relative" 
-                    ref={dropdownRef}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <button
-                      onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
-                      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1 ${
-                        location.pathname === item.path
-                          ? 'text-blue-600 bg-blue-50'
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                      }`}
-                      title={item.description}
+          {/* Navigation and OMS Button */}
+          <div className="flex items-center space-x-8">
+            <nav className="hidden md:flex space-x-8">
+              {NAVIGATION_ITEMS.map((item) => {
+                if (item.path === ROUTES.SERVICES) {
+                  return (
+                    <div 
+                      key={item.path} 
+                      className="relative" 
+                      ref={dropdownRef}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
                     >
-                      {item.label}
-                      <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${
-                        isServicesDropdownOpen ? 'rotate-180' : ''
-                      }`} />
-                    </button>
-                    
-                    {/* Services Dropdown */}
-                    {isServicesDropdownOpen && (
-                      <>
-                        {/* Invisible bridge to help with mouse movement */}
-                        <div className="absolute top-full left-0 right-0 h-1 bg-transparent" />
-                        <div className="absolute top-full mt-1 left-0 bg-white shadow-lg rounded-xl py-3 px-4 z-50 min-w-48">
-                        <Link
-                          to={ROUTES.SERVICES}
-                          onClick={() => setIsServicesDropdownOpen(false)}
-                          className="block w-full text-left px-3 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200 border-b border-gray-100 mb-2"
-                        >
-                          View All Services
-                        </Link>
-                        {servicesItems.map((service) => (
-                          <button
-                            key={service.label}
-                            onClick={() => navigateToService(service.sectionId)}
-                            className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
+                      <button
+                        onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+                        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1 ${
+                          location.pathname === item.path
+                            ? 'text-brand-orange bg-brand-orange/10'
+                            : 'text-brand-dark hover:text-brand-navy hover:bg-brand-light'
+                        }`}
+                        title={item.description}
+                      >
+                        {item.label}
+                        <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${
+                          isServicesDropdownOpen ? 'rotate-180' : ''
+                        }`} />
+                      </button>
+                      
+                      {/* Services Dropdown */}
+                      {isServicesDropdownOpen && (
+                        <>
+                          {/* Invisible bridge to help with mouse movement */}
+                          <div className="absolute top-full left-0 right-0 h-1 bg-transparent" />
+                          <div className="absolute top-full mt-1 left-0 bg-white shadow-lg rounded-xl py-3 px-4 z-50 min-w-48">
+                          <Link
+                            to={ROUTES.SERVICES}
+                            onClick={() => setIsServicesDropdownOpen(false)}
+                            className="block w-full text-left px-3 py-2 text-sm font-semibold text-brand-orange hover:bg-brand-orange/10 rounded-md transition-colors duration-200 border-b border-gray-100 mb-2"
                           >
-                            {service.label}
-                          </button>
-                        ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
+                            View All Services
+                          </Link>
+                          {servicesItems.map((service) => (
+                            <button
+                              key={service.label}
+                              onClick={() => navigateToService(service.sectionId)}
+                              className="block w-full text-left px-3 py-2 text-sm text-brand-dark hover:text-brand-orange hover:bg-brand-orange/10 rounded-md transition-colors duration-200"
+                            >
+                              {service.label}
+                            </button>
+                          ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  );
+                }
+                
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                      location.pathname === item.path
+                        ? 'text-brand-orange bg-brand-orange/10'
+                        : 'text-brand-dark hover:text-brand-navy hover:bg-brand-light'
+                    }`}
+                    title={item.description}
+                  >
+                    {item.label}
+                  </Link>
                 );
-              }
-              
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                    location.pathname === item.path
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
-                  title={item.description}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
+              })}
+            </nav>
+
+            {/* OMS Button */}
+            <div className="relative group">
+              <Link
+                to={ROUTES.OMS}
+                className="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-brand-teal text-white hover:bg-brand-tealHover"
+              >
+                OMS
+              </Link>
+              {/* Tooltip */}
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 px-3 py-2 bg-brand-navy text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 shadow-lg" style={{ fontSize: '0.5rem' }}>
+                Operational Management System
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-brand-navy"></div>
+              </div>
+            </div>
+          </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
