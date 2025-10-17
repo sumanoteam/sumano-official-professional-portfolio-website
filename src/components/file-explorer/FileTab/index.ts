@@ -1,2 +1,0 @@
-export { FileTab } from './FileTab';
-

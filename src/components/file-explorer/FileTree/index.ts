@@ -1,2 +1,0 @@
-export { FileTree } from './FileTree';
-

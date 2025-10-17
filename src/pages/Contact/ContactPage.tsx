@@ -1,28 +1,56 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import { ContactHero } from './components/ContactHero';
+import { ContactForm } from './components/ContactForm';
+import { ContactDetails } from './components/ContactDetails';
+import { MapEmbed } from './components/MapEmbed';
+import { SocialLinks } from './components/SocialLinks';
 
 export const ContactPage: React.FC = () => {
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Contact Us
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Get in touch with our team to discuss your project.
-          </p>
-        </div>
+    <>
+      <Helmet>
+        <title>Contact — Sumano | Modern web & AI solutions</title>
+        <meta 
+          name="description" 
+          content="Contact Sumano for web, UX and AI solutions. Request a consultation or project quote." 
+        />
+        <meta property="og:title" content="Contact — Sumano" />
+        <meta 
+          property="og:description" 
+          content="Contact Sumano for web, UX and AI solutions. Request a consultation or project quote." 
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Contact — Sumano" />
+        <meta 
+          name="twitter:description" 
+          content="Contact Sumano for web, UX and AI solutions. Request a consultation or project quote." 
+        />
+      </Helmet>
+      
+      <main className="min-h-screen">
+        {/* Hero Section */}
+        <ContactHero />
         
-        <div className="card">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-            Coming Soon
-          </h2>
-          <p className="text-gray-600">
-            This page is under development. We'll have a contact form here soon.
-          </p>
-        </div>
-      </div>
-    </div>
+        {/* Main Content Section */}
+        <section className="py-12 bg-white">
+          <div className="container mx-auto max-w-7xl px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+              {/* Contact Form - Left on desktop, top on mobile */}
+              <ContactForm />
+              
+              {/* Contact Details and Map - Right on desktop, bottom on mobile */}
+              <div className="space-y-6">
+                <ContactDetails />
+                <MapEmbed />
+                <SocialLinks />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   );
 };
 

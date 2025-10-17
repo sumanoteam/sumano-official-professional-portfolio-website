@@ -2,9 +2,9 @@
 
 export const CONFIG = {
   APP: {
-    NAME: 'Sumano Portfolio',
+    NAME: 'Sumano Tech Solution',
     VERSION: '1.0.0',
-    DESCRIPTION: 'Professional portfolio website for Sumano team',
+    DESCRIPTION: 'Professional tech solutions for modern businesses',
     AUTHOR: 'Sumano Team',
     WEBSITE: 'https://sumano.com'
   },

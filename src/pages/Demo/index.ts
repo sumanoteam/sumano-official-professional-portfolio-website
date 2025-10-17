@@ -1,2 +1,0 @@
-export { DemoPage } from './DemoPage';
-
