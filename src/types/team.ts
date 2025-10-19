@@ -17,6 +17,15 @@ export interface TeamMember {
     skills: string[];
     achievements: string[];
     certifications: string[];
+    contact?: {
+      email: string;
+      phone: string;
+      location: string;
+    };
+    projects?: string[];
+    leadership?: string[];
+    softSkills?: string[];
+    references?: string;
   };
 }
 

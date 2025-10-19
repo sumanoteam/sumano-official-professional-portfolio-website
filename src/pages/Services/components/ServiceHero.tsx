@@ -5,6 +5,7 @@ import { ROUTES } from '../../../constants/routes';
 import { scrollToElement } from '../../../utils/scrollUtils';
 import { Container } from '../../../components/layout/Container';
 import { HeroBackground } from '../../../components/ui/HeroBackground';
+import { Button } from '../../../components/ui/Button/Button';
 import { HERO_BACKGROUNDS, HERO_HEIGHTS } from '../../../constants/heroBackgrounds';
 
 export const ServiceHero: React.FC = () => {
@@ -44,16 +45,18 @@ export const ServiceHero: React.FC = () => {
           >
             <Link
               to={ROUTES.CONTACT}
-              className="btn btn-primary px-8 py-4"
+              className="btn-primary btn-lg"
             >
               Let's Work Together
             </Link>
-            <button
+            <Button
+              variant="outline"
+              size="lg"
               onClick={() => scrollToElement('web-development', 80)}
-              className="btn btn-outline border-white text-white hover:bg-white hover:text-brand-navy px-8 py-4"
+              outlineColor="navy"
             >
               Explore Our Services
-            </button>
+            </Button>
           </motion.div>
         </div>
       </Container>

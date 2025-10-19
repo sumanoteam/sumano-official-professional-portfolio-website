@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
 import { Container } from '../../components/layout/Container';
 import { HeroBackground } from '../../components/ui/HeroBackground';
+import { Button } from '../../components/ui/Button/Button';
 import { HERO_BACKGROUNDS, HERO_HEIGHTS } from '../../constants/heroBackgrounds';
 
 export const HomePage: React.FC = () => {
@@ -25,24 +25,15 @@ export const HomePage: React.FC = () => {
             management systems, and custom diagnostic auditing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to={`${ROUTES.ABOUT}#our-team`}
-              className="btn btn-primary px-8 py-3 text-lg"
-            >
+            <Button variant="primary" size="lg" as="a" href={`${ROUTES.ABOUT}#our-team`}>
               Meet Our Team
-            </Link>
-            <Link
-              to={ROUTES.PORTFOLIO}
-              className="btn btn-outline border-white text-white hover:bg-white hover:text-brand-navy px-8 py-3 text-lg"
-            >
+            </Button>
+            <Button variant="outline" size="lg" as="a" href={ROUTES.PORTFOLIO} outlineColor="ctaBlue">
               View Our Work
-            </Link>
-            <Link
-              to={ROUTES.SERVICES}
-              className="btn btn-outline border-white text-white hover:bg-white hover:text-brand-navy px-8 py-3 text-lg"
-            >
+            </Button>
+            <Button variant="outline" size="lg" as="a" href={ROUTES.SERVICES} outlineColor="ctaBlue">
               Our Services
-            </Link>
+            </Button>
           </div>
         </Container>
       </HeroBackground>
@@ -54,15 +45,15 @@ export const HomePage: React.FC = () => {
             <h2 className="h2 mb-4">
               What We Do
             </h2>
-            <p className="text-xl text-brand-dark/80 max-w-2xl mx-auto">
+            <p className="text-xl text-brand-text-muted-enhanced max-w-2xl mx-auto text-enhanced-subtle">
               We provide comprehensive technology solutions for modern businesses and institutions.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="card card-hover text-center">
-              <div className="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
@@ -75,8 +66,8 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="card card-hover text-center">
-              <div className="w-16 h-16 bg-brand-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-brand-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
               </div>
@@ -89,8 +80,8 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="card card-hover text-center">
-              <div className="w-16 h-16 bg-brand-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-brand-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-16 h-16 bg-brand-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-brand-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -106,7 +97,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-brand-navy text-white">
+      <section className="py-20 bg-brand-primary text-white">
         <Container size="md" className="text-center">
           <h2 className="h2 mb-4 text-white">
             Ready to Work With Us?
@@ -114,12 +105,9 @@ export const HomePage: React.FC = () => {
           <p className="text-xl text-white/90 mb-8">
             Let's discuss your project and see how we can help bring your vision to life.
           </p>
-          <Link
-            to={ROUTES.CONTACT}
-            className="btn btn-primary px-8 py-3 text-lg"
-          >
+          <Button variant="primary" size="lg" as="a" href={ROUTES.CONTACT}>
             Get In Touch
-          </Link>
+          </Button>
         </Container>
       </section>
     </div>

@@ -21,15 +21,15 @@ export const MapEmbed: React.FC = () => {
       </div>
 
       {/* Map Placeholder */}
-      <div className="relative w-full h-48 md:h-64 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+      <div className="relative w-full h-48 md:h-64 rounded-lg overflow-hidden bg-blue-50 border border-blue-200 hover:bg-blue-100 hover:border-blue-300 transition-all duration-300 cursor-pointer group">
         {/* Placeholder Map Image or iframe would go here */}
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 group-hover:from-blue-100 group-hover:to-blue-200 transition-all duration-300">
           <div className="text-center">
-            <MapPinIcon className="h-12 w-12 text-[#234E70] mx-auto mb-3" />
-            <p className="text-gray-600 font-medium mb-2">
+            <MapPinIcon className="h-12 w-12 text-blue-600 mx-auto mb-3 group-hover:text-blue-700 transition-colors duration-300" />
+            <p className="text-blue-700 font-medium mb-2 group-hover:text-blue-800 transition-colors duration-300">
               {CONTACT_CONTENT.MAP.PLACEHOLDER_TEXT}
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
               {CONTACT_CONTENT.DETAILS.INFO.ADDRESS}
             </p>
           </div>

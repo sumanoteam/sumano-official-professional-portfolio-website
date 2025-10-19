@@ -1,43 +1,56 @@
-// Brand color constants for consistent usage across the application
+// Vibrant Brand Color System - Enhanced for Sumano Tech Solution
 export const BRAND_COLORS = {
-  // Primary brand navy
-  PRIMARY: '#234E70',
-  PRIMARY_LIGHT: '#3B6B8F',
-  PRIMARY_DARK: '#1A3A52',
+  // Primary Colors - Deep Tech Blue (Trust, Stability)
+  PRIMARY: '#1A3E8C',
+  PRIMARY_HOVER: '#142F6A',
+  PRIMARY_LIGHT: '#3B5BA8',
+  PRIMARY_DARK: '#0F2A5C',
   
-  // Secondary / action color (warm energy)
-  SECONDARY: '#F5A623',
-  SECONDARY_LIGHT: '#F7B84D',
-  SECONDARY_DARK: '#E0951A',
+  // Highlight CTA Blue - Vibrant Tech Blue (Energy, Conversion)
+  CTA_BLUE: '#1E50FF',
+  CTA_BLUE_HOVER: '#163DCC',
+  CTA_BLUE_LIGHT: '#4A7AFF',
+  CTA_BLUE_DARK: '#0F3BB8',
   
-  // Accent / success
-  ACCENT: '#1ABC9C',
-  ACCENT_LIGHT: '#4DD4B8',
-  ACCENT_DARK: '#16A085',
+  // Accent Colors - Electric Teal Green (Innovation, Success)
+  ACCENT: '#70EE9C',
+  ACCENT_HOVER: '#5AD88A',
+  ACCENT_LIGHT: '#8FF2B0',
+  ACCENT_DARK: '#4BCA7A',
+  ACCENT_SUCCESS: '#00C38E',
   
-  // Neutral text colors
-  TEXT_PRIMARY: '#475569',
-  TEXT_SECONDARY: '#64748B',
-  TEXT_LIGHT: '#94A3B8',
+  // Text Colors - Enhanced Contrast System
+  TEXT_PRIMARY: '#000000',                    // Pure black for maximum contrast
+  TEXT_SECONDARY: '#64748B',                  // Legacy muted - to be replaced
+  TEXT_LIGHT: '#94A3B8',                      // Legacy light - to be replaced
+  TEXT_WHITE: '#FFFFFF',                      // White text for dark backgrounds
   
-  // Background colors
-  BACKGROUND_WHITE: '#FFFFFF',
-  BACKGROUND_LIGHT: '#F8FAFC',
-  BACKGROUND_GRAY: '#F1F5F9',
+  // New Contrast-Safe Text Tokens for White Backgrounds
+  TEXT_DARK: '#111827',                       // Deep charcoal for high contrast
+  TEXT_BASE: '#1E293B',                       // Slightly softened black
+  TEXT_MUTED_ENHANCED: '#475569',             // Better contrast than #64748B
+  TEXT_SUBTLE: '#64748B',                     // For very subtle text
+  TEXT_LIGHT_ENHANCED: '#94A3B8',             // For disabled/placeholder text
   
-  // Status colors
-  SUCCESS: '#10B981',
+  // Status Colors
+  SUCCESS: '#70EE9C',
   WARNING: '#F59E0B',
-  ERROR: '#EF4444',
+  ERROR: '#E53935',
   INFO: '#3B82F6',
   
-  // Border colors
+  // Background Colors
+  BACKGROUND_WHITE: '#FFFFFF',
+  BACKGROUND_LIGHT: '#F8F9FA',
+  BACKGROUND_CARD: '#FFFFFF',
+  
+  // Border Colors
   BORDER_LIGHT: '#E2E8F0',
+  BORDER_FOCUS: '#70EE9C',
   BORDER_MEDIUM: '#CBD5E1',
   BORDER_DARK: '#94A3B8',
 } as const;
 
-// Tailwind color mappings for easy usage
+// Tailwind color mappings for easy usage - New Brand System
 export const TAILWIND_COLORS = {
   primary: {
     50: '#EFF6FF',
@@ -45,38 +58,47 @@ export const TAILWIND_COLORS = {
     200: '#BFDBFE',
     300: '#93C5FD',
     400: '#60A5FA',
-    500: '#3B82F6',
-    600: '#2563EB',
-    700: '#1D4ED8',
-    800: '#1E40AF',
-    900: '#1E3A8A',
-    950: '#172554'
+    500: '#1A3E8C',  // Main primary color
+    600: '#142F6A',  // Primary hover
+    700: '#0F2A5C',  // Primary dark
+    800: '#0A1F47',
+    900: '#051432',
+    950: '#020A1C'
   },
-  secondary: {
-    50: '#F8FAFC',
-    100: '#F1F5F9',
-    200: '#E2E8F0',
-    300: '#CBD5E1',
-    400: '#94A3B8',
-    500: '#64748B',
-    600: '#475569',
-    700: '#334155',
-    800: '#1E293B',
-    900: '#0F172A',
-    950: '#020617'
-  },
+      secondary: {
+        50: '#F8F9FA',
+        100: '#F1F5F9',
+        200: '#E2E8F0',
+        300: '#CBD5E1',
+        400: '#94A3B8',
+        500: '#64748B',
+        600: '#475569',
+        700: '#334155',
+        800: '#1E293B',
+        900: '#0F172A',
+        950: '#000000'   // Main secondary color (black)
+      },
+      // Enhanced Text Colors for Better Contrast
+      text: {
+        dark: '#111827',        // Deep charcoal for high contrast
+        base: '#1E293B',        // Slightly softened black
+        'muted-enhanced': '#475569',  // Better contrast than #64748B
+        subtle: '#64748B',      // For very subtle text
+        'light-enhanced': '#94A3B8',  // For disabled/placeholder text
+        white: '#FFFFFF',       // White text for dark backgrounds
+      },
   accent: {
     50: '#F0FDF4',
     100: '#DCFCE7',
     200: '#BBF7D0',
     300: '#86EFAC',
-    400: '#4ADE80',
-    500: '#22C55E',
-    600: '#16A34A',
-    700: '#15803D',
-    800: '#166534',
-    900: '#14532D',
-    950: '#052E16'
+    400: '#8FF2B0',  // Accent light
+    500: '#70EE9C',  // Main accent color
+    600: '#5AD88A',  // Accent hover
+    700: '#4BCA7A',  // Accent dark
+    800: '#3BB86A',
+    900: '#2BA65A',
+    950: '#1B8C4A'
   }
 } as const;
 

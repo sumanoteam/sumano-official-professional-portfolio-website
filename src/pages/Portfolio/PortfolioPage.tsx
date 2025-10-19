@@ -13,7 +13,7 @@ export const PortfolioPage: React.FC = () => {
     : portfolioProjects.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-br from-brand-navy to-brand-navyHover text-white">
+    <div className="min-h-screen py-12 bg-gradient-to-br from-brand-primary to-brand-primary-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-12"

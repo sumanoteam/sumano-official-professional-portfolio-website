@@ -7,18 +7,62 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Brand colors - exact values as specified
+        // Vibrant Brand Color System - Enhanced
         brand: {
-          orange: '#F5A623',      // Primary (Action / CTA)
-          navy: '#234E70',        // Secondary (Trust / Background)
-          teal: '#1ABC9C',        // Accent (Success / Support)
-          light: '#F8F9FA',       // Neutral Light
-          dark: '#333333',        // Neutral Dark (Text)
-          white: '#FFFFFF',       // White
-          // Hover states
-          orangeHover: '#E0951A',
-          navyHover: '#1A3A52',
-          tealHover: '#16A085',
+          // Primary Colors - Deep Tech Blue (Trust, Stability)
+          primary: '#1A3E8C',
+          'primary-hover': '#142F6A',
+          'primary-light': '#3B5BA8',
+          'primary-dark': '#0F2A5C',
+          
+          // Highlight CTA Blue - Vibrant Tech Blue (Energy, Conversion)
+          'cta-blue': '#1E50FF',
+          'cta-blue-hover': '#163DCC',
+          'cta-blue-light': '#4A7AFF',
+          'cta-blue-dark': '#0F3BB8',
+          
+          // Accent Colors - Electric Teal Green (Innovation, Success)
+          accent: '#70EE9C',
+          'accent-hover': '#5AD88A',
+          'accent-light': '#8FF2B0',
+          'accent-dark': '#4BCA7A',
+          'accent-success': '#00C38E',
+          
+          // Text Colors - Enhanced Contrast System
+          text: '#000000',                    // Pure black for maximum contrast
+          'text-muted': '#64748B',            // Legacy muted - to be replaced
+          'text-light': '#94A3B8',            // Legacy light - to be replaced
+          'text-white': '#FFFFFF',            // White text for dark backgrounds
+          
+          // New Contrast-Safe Text Tokens for White Backgrounds
+          'text-dark': '#111827',             // Deep charcoal for high contrast
+          'text-base': '#1E293B',             // Slightly softened black
+          'text-muted-enhanced': '#475569',   // Better contrast than #64748B
+          'text-subtle': '#64748B',           // For very subtle text
+          'text-light-enhanced': '#94A3B8',   // For disabled/placeholder text
+          
+          // Status Colors
+          success: '#70EE9C',
+          warning: '#F59E0B',
+          error: '#E53935',
+          info: '#3B82F6',
+          
+          // Background Colors
+          bg: '#F8F9FA',
+          'bg-white': '#FFFFFF',
+          'bg-card': '#FFFFFF',
+          
+          // Border Colors
+          border: '#E2E8F0',
+          'border-focus': '#70EE9C',
+          'border-light': '#F1F5F9',
+        },
+        // Text Color Utilities for Contrast
+        textColor: {
+          'on-light': 'var(--brand-text-dark)',      // High contrast for white/light backgrounds
+          'on-dark': 'var(--color-text-white)',      // White text for dark backgrounds
+          'muted-on-light': 'var(--brand-text-muted)', // Better contrast muted text
+          'subtle-on-light': 'var(--brand-text-subtle)', // Subtle text for light backgrounds
         },
         // Keep some utility colors for borders, shadows, etc.
         gray: {

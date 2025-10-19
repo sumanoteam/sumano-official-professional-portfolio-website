@@ -51,14 +51,14 @@ export const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
             error ? 'border-red-300' : 'border-gray-300'
           } ${disabled ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'}`}
           aria-describedby={ariaDescribedby}
-          aria-invalid={ariaInvalid}
+          aria-invalid={ariaInvalid ? 'true' : 'false'}
         />
         <label
           htmlFor={id}
           className={`absolute left-4 transition-all duration-200 pointer-events-none ${
             isFloating
               ? 'top-2 text-xs text-brand-orange font-medium'
-              : 'top-4 text-sm text-gray-500'
+              : 'top-1 text-sm text-gray-500'
           }`}
         >
           {label}

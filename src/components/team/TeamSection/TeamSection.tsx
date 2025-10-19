@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TeamMemberProfile } from '../TeamMemberProfile';
+import { TeamMemberModal } from '../TeamMemberModal';
 import { TeamSectionProps } from '../../../types/team';
 import { TEAM_CONTENT } from '../../../constants/team';
 import { Container } from '../../layout/Container';
+import { TeamMember } from '../../../types/team';
 
 export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = (member: TeamMember) => {
+    setSelectedMember(member);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedMember(null);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -61,12 +76,22 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
                 variants={itemVariants}
                 className="flex justify-center"
               >
-                <TeamMemberProfile member={member} />
+                <TeamMemberProfile 
+                  member={member} 
+                  onOpenModal={() => handleOpenModal(member)}
+                />
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
       </Container>
+      
+      {/* Team Member Modal */}
+      <TeamMemberModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        member={selectedMember}
+      />
     </section>
   );
 };
