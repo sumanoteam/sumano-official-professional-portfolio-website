@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
+import { Button } from '../../../components/ui/Button/Button';
 
 interface ServiceCardProps {
   id: string;
@@ -45,7 +46,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
               {description}
             </p>
             
-            <ul className="space-y-2 text-brand-dark/80">
+                <ul className="space-y-2 text-brand-text-muted-enhanced text-enhanced-subtle">
               {features.map((feature, index) => (
                 <motion.li
                   key={index}
@@ -55,7 +56,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
                   viewport={{ once: true }}
                   className="flex items-center gap-2"
                 >
-                  <span className="text-brand-teal">✅</span>
+                  <span className="text-brand-accent" aria-hidden="true">✅</span>
                   <span>{feature}</span>
                 </motion.li>
               ))}
@@ -68,12 +69,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
               viewport={{ once: true }}
               className="mt-8"
             >
-              <button className="btn btn-primary px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
+              <Button variant="primary" size="md">
                 Learn More
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </Button>
             </motion.div>
           </motion.div>
           

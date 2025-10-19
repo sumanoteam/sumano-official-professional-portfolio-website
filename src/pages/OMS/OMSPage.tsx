@@ -127,7 +127,7 @@ export const OMSPage: React.FC = () => {
                   ))}
                 </ul>
               </div>
-              <div className="bg-gradient-to-br from-brand-navy to-brand-navyHover rounded-2xl p-8 text-white">
+              <div className="bg-gradient-to-br from-brand-primary to-brand-primary-dark rounded-2xl p-8 text-white">
                 <h3 className="h3 mb-4 text-white">Ready to Get Started?</h3>
                 <p className="text-white/90 mb-6">
                   Join our waiting list to be among the first to experience the future of HR management.
@@ -152,7 +152,7 @@ export const OMSPage: React.FC = () => {
         </section>
 
         {/* Coming Soon CTA */}
-        <section className="py-20 bg-gradient-to-r from-brand-navy to-brand-navyHover text-white">
+        <section className="py-20 bg-gradient-to-r from-brand-primary to-brand-primary-dark text-white">
           <Container className="text-center">
             <h2 className="h2 mb-4 text-white">Be the First to Experience OMS</h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
@@ -165,7 +165,7 @@ export const OMSPage: React.FC = () => {
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-lg text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-orange"
               />
-              <button className="btn btn-primary px-8 py-3 flex items-center">
+              <button className="btn-primary flex items-center">
                 Notify Me
                 <ArrowRightIcon className="h-5 w-5 ml-2" />
               </button>

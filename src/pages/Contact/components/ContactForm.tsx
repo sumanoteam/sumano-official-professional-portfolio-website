@@ -103,15 +103,15 @@ export const ContactForm: React.FC = () => {
         <h2 className="h2 mb-2">
           {CONTACT_CONTENT.FORM.TITLE}
         </h2>
-        <p className="text-brand-dark/80">
-          {CONTACT_CONTENT.FORM.SUBTITLE}
-        </p>
+            <p className="text-brand-text-muted-enhanced text-enhanced-subtle">
+              {CONTACT_CONTENT.FORM.SUBTITLE}
+            </p>
       </div>
 
       {/* Status Messages */}
       {submitStatus === 'success' && (
         <div 
-          className="mb-6 p-4 bg-brand-teal/10 border border-brand-teal/20 rounded-lg text-brand-teal"
+          className="mb-6 p-4 bg-brand-accent/10 border border-brand-accent/20 rounded-lg text-brand-accent"
           role="alert"
         >
           <div className="flex items-center">
@@ -301,7 +301,7 @@ export const ContactForm: React.FC = () => {
             variant="primary"
             size="lg"
             disabled={isSubmitting}
-            className="w-full bg-[#F5A623] hover:bg-[#E0951A] text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">

@@ -2,13 +2,119 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for Vibrant Brand Colors - DRY Implementation */
+:root {
+  /* Primary Colors - Deep Tech Blue (Trust, Stability) */
+  --color-primary: #1A3E8C;
+  --color-primary-hover: #142F6A;
+  --color-primary-light: #3B5BA8;
+  --color-primary-dark: #0F2A5C;
+  
+  /* Highlight CTA Blue - Vibrant Tech Blue (Energy, Conversion) */
+  --color-cta-blue: #1E50FF;
+  --color-cta-blue-hover: #163DCC;
+  --color-cta-blue-light: #4A7AFF;
+  --color-cta-blue-dark: #0F3BB8;
+  
+  /* Accent Colors - Electric Teal Green (Innovation, Success) */
+  --color-accent: #70EE9C;
+  --color-accent-hover: #5AD88A;
+  --color-accent-light: #8FF2B0;
+  --color-accent-dark: #4BCA7A;
+  --color-accent-success: #00C38E;
+  
+  /* Text Colors - Enhanced Contrast System */
+  --color-text: #000000;                    /* Pure black for maximum contrast */
+  --color-text-muted: #64748B;              /* Legacy muted - to be replaced */
+  --color-text-light: #94A3B8;              /* Legacy light - to be replaced */
+  --color-text-white: #FFFFFF;              /* White text for dark backgrounds */
+  
+  /* New Contrast-Safe Text Tokens for White Backgrounds */
+  --brand-text-dark: #111827;               /* Deep charcoal for high contrast */
+  --brand-text-base: #1E293B;               /* Slightly softened black */
+  --brand-text-muted: #475569;              /* Better contrast than #64748B */
+  --brand-text-subtle: #64748B;             /* For very subtle text */
+  --brand-text-light: #94A3B8;              /* For disabled/placeholder text */
+  
+  /* Status Colors */
+  --color-success: #70EE9C;
+  --color-warning: #F59E0B;
+  --color-error: #E53935;
+  --color-info: #3B82F6;
+  
+  /* Background Colors */
+  --color-bg: #F8F9FA;
+  --color-bg-white: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  
+  /* Border Colors */
+  --color-border: #E2E8F0;
+  --color-border-focus: #70EE9C;
+  --color-border-light: #F1F5F9;
+  
+  /* Shadow Colors */
+  --shadow-subtle: rgba(0, 0, 0, 0.05);
+  --shadow-card: rgba(0, 0, 0, 0.1);
+  --shadow-glow: rgba(30, 80, 255, 0.3);
+  --shadow-glow-hover: rgba(30, 80, 255, 0.45);
+  --shadow-success: rgba(112, 238, 156, 0.3);
+  
+  /* Primary Button Design Tokens - Unified System */
+  --btn-primary-start: #1E50FF;                    /* CTA Blue */
+  --btn-primary-end: #163DCC;                      /* Hover darker CTA Blue */
+  --btn-primary-text: #FFFFFF;                     /* Text color on primary */
+  --btn-primary-focus: #70EE9C;                    /* Focus ring accent */
+  --btn-primary-shadow: rgba(30, 80, 255, 0.3);    /* Default shadow */
+  --btn-primary-shadow-hover: rgba(30, 80, 255, 0.45); /* Hover shadow */
+  --btn-primary-disabled: #9CA3AF;                 /* Disabled color */
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* Adaptive Text Contrast Detection */
+[data-theme="light"] {
+  --text-primary: var(--brand-text-dark);
+  --text-secondary: var(--brand-text-muted);
+  --text-muted: var(--brand-text-subtle);
+}
+
+[data-theme="dark"] {
+  --text-primary: var(--color-text-white);
+  --text-secondary: var(--color-text-light);
+  --text-muted: var(--color-text-light);
+}
+
+/* Auto-contrast for white backgrounds */
+.bg-white,
+.bg-brand-bg-white,
+.bg-brand-bg-card {
+  --text-primary: var(--brand-text-dark);
+  --text-secondary: var(--brand-text-muted);
+  --text-muted: var(--brand-text-subtle);
+}
+
+/* Auto-contrast for dark backgrounds */
+.bg-brand-primary,
+.bg-brand-navy,
+.bg-gradient-to-r,
+.bg-gradient-to-br {
+  --text-primary: var(--color-text-white);
+  --text-secondary: var(--color-text-white);
+  --text-muted: var(--color-text-white);
+}
+
 @layer base {
   * {
     @apply border-gray-200;
   }
   
   body {
-    @apply bg-brand-light text-brand-dark font-roboto;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Roboto', system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
@@ -16,30 +122,59 @@
     scroll-behavior: smooth;
   }
 
-  /* Typography System - Responsive Scale */
-  h1, .h1 { 
-    @apply font-poppins font-bold text-brand-navy;
-    font-size: 2rem; /* Mobile */
+      /* Typography System - Enhanced Contrast & Responsive Scale */
+      h1, .h1 { 
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: var(--brand-text-dark);        /* High contrast for white backgrounds */
+        font-size: 2rem; /* Mobile */
+        line-height: 1.2;
+        letter-spacing: 0.025em;              /* Enhanced readability */
+      }
+      
+      h2, .h2 { 
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: var(--brand-text-dark);        /* High contrast for white backgrounds */
+        font-size: 1.75rem; /* Mobile */
+        line-height: 1.3;
+        letter-spacing: 0.025em;              /* Enhanced readability */
+      }
+      
+      h3, .h3 { 
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        color: var(--brand-text-dark);        /* High contrast for white backgrounds */
+        font-size: 1.5rem; /* Mobile */
+        line-height: 1.4;
+        letter-spacing: 0.025em;              /* Enhanced readability */
+      }
+      
+      p, .body { 
+        font-family: 'Roboto', sans-serif;
+        color: var(--brand-text-base);        /* Better contrast than pure black */
+        font-size: 1rem; /* Mobile */
+        line-height: 1.6;
+        letter-spacing: 0.01em;               /* Subtle spacing for readability */
+      }
+      
+      small, .small { 
+        font-family: 'Roboto', sans-serif;
+        color: var(--brand-text-muted);       /* Better contrast than legacy muted */
+        font-size: 0.875rem; /* Mobile */
+        line-height: 1.5;
+        letter-spacing: 0.01em;               /* Subtle spacing for readability */
+      }
+
+  /* Link Styles */
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-normal);
   }
   
-  h2, .h2 { 
-    @apply font-poppins font-semibold text-brand-navy;
-    font-size: 1.75rem; /* Mobile */
-  }
-  
-  h3, .h3 { 
-    @apply font-poppins font-medium text-brand-navy;
-    font-size: 1.5rem; /* Mobile */
-  }
-  
-  p, .body { 
-    @apply font-roboto text-brand-dark;
-    font-size: 1rem; /* Mobile */
-  }
-  
-  small, .small { 
-    @apply font-roboto text-sm text-gray-600;
-    font-size: 0.875rem; /* Mobile */
+  a:hover {
+    color: var(--color-accent);
   }
 
   /* Desktop Typography Scale */
@@ -56,38 +191,356 @@
   
   /* Card Components */
   .card {
-    @apply bg-white rounded-lg shadow-md border border-gray-200 p-6;
+    background-color: var(--color-bg-card);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px var(--shadow-subtle);
+    border: 1px solid var(--color-border);
+    padding: 1.5rem;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    transition: all var(--transition-normal);
   }
   
-  /* Button Components - Brand Colors */
+  .card-hover:hover {
+    box-shadow: 0 10px 25px -3px var(--shadow-card);
+    transform: translateY(-3px);
+  }
+  
+  /* Vibrant Button System - Enhanced with Gradients and Effects */
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 font-poppins font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all var(--transition-normal);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.025em;
   }
   
+  .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 4px rgba(112, 238, 156, 0.2);
+  }
+  
+  .btn:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    filter: none;
+  }
+  
+  /* Unified Primary Buttons - Global Design System */
   .btn-primary {
-    @apply bg-brand-orange text-white hover:bg-brand-orangeHover focus:ring-brand-orange/60;
+    /* Layout & Typography */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.025em;
+    
+    /* Visual Design */
+    background: linear-gradient(135deg, var(--btn-primary-start) 0%, var(--btn-primary-end) 100%);
+    background-size: 200% auto;
+    color: var(--btn-primary-text);
+    border: none;
+    border-radius: 0.75rem;
+    
+    /* Spacing - Responsive */
+    padding: 0.75rem 1.5rem;
+    
+    /* Effects */
+    box-shadow: 0 4px 12px var(--btn-primary-shadow);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    
+    /* Accessibility */
+    outline: none;
   }
   
+  /* Responsive Padding */
+  @media (min-width: 640px) {
+    .btn-primary {
+      padding: 0.75rem 2rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .btn-primary {
+      padding: 1rem 2.5rem;
+    }
+  }
+  
+  /* Hover Effects - Enhanced */
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background-position: right center;
+    box-shadow: 0 6px 18px var(--btn-primary-shadow-hover);
+    filter: brightness(1.1);
+  }
+  
+  /* Focus States - Accessibility */
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--btn-primary-focus), 0 0 0 4px rgba(112, 238, 156, 0.2);
+  }
+  
+  /* Active State */
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px var(--btn-primary-shadow);
+  }
+  
+  /* Disabled State */
+  .btn-primary:disabled {
+    background: linear-gradient(135deg, var(--btn-primary-disabled), #6B7280);
+    color: #FFFFFF;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    filter: none;
+    opacity: 0.6;
+  }
+  
+  /* Size Variants */
+  .btn-primary.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-primary.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+  
+  @media (min-width: 640px) {
+    .btn-primary.btn-sm {
+      padding: 0.5rem 1.25rem;
+    }
+    .btn-primary.btn-lg {
+      padding: 1.25rem 2.5rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .btn-primary.btn-lg {
+      padding: 1.5rem 3rem;
+    }
+  }
+  
+  /* Secondary Buttons - Deep Tech Blue Gradient */
   .btn-secondary {
-    @apply bg-brand-navy text-white hover:bg-brand-navyHover focus:ring-brand-navy/60;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+    color: var(--color-text-white);
+    box-shadow: 0 4px 12px rgba(26, 62, 140, 0.3);
   }
   
+  .btn-secondary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(26, 62, 140, 0.45);
+    filter: brightness(1.1);
+  }
+  
+  /* Accent Buttons - Electric Teal Green Gradient */
+  .btn-accent {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-success) 100%);
+    color: var(--color-text);
+    box-shadow: 0 4px 12px var(--shadow-success);
+  }
+  
+  .btn-accent:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--shadow-success);
+    filter: brightness(1.1);
+  }
+  
+  /* Success Buttons - Same as Accent */
   .btn-success {
-    @apply bg-brand-teal text-white hover:bg-brand-tealHover focus:ring-brand-teal/60;
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-success) 100%);
+    color: var(--color-text);
+    box-shadow: 0 4px 12px var(--shadow-success);
   }
   
+  .btn-success:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--shadow-success);
+    filter: brightness(1.1);
+  }
+  
+  /* Unified Outline Buttons - White on Dark Aesthetic */
   .btn-outline {
-    @apply border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white focus:ring-brand-navy/60;
+    /* Layout & Typography */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.025em;
+    
+    /* Visual Design */
+    background: transparent;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 0.75rem;
+    
+    /* Spacing - Responsive */
+    padding: 0.75rem 1.5rem;
+    
+    /* Effects */
+    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    
+    /* Accessibility */
+    outline: none;
   }
   
-  /* Animation Classes */
-  .fade-in {
-    @apply animate-fade-in;
+  /* Responsive Padding */
+  @media (min-width: 640px) {
+    .btn-outline {
+      padding: 0.75rem 2rem;
+      font-size: 1.125rem;
+    }
   }
+  
+  @media (min-width: 768px) {
+    .btn-outline {
+      padding: 1rem 2.5rem;
+    }
+  }
+  
+  /* Hover Effects - Enhanced */
+  .btn-outline:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #FFFFFF;
+    color: var(--color-cta-blue);
+    box-shadow: 0 6px 18px rgba(30, 80, 255, 0.45);
+    filter: brightness(1.1);
+  }
+  
+  /* Focus States - Accessibility */
+  .btn-outline:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 4px rgba(112, 238, 156, 0.2);
+  }
+  
+  /* Active State */
+  .btn-outline:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Disabled State */
+  .btn-outline:disabled {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    filter: none;
+    opacity: 0.5;
+  }
+  
+  /* Size Variants */
+  .btn-outline.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-outline.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+  
+  @media (min-width: 640px) {
+    .btn-outline.btn-sm {
+      padding: 0.5rem 1.25rem;
+    }
+    .btn-outline.btn-lg {
+      padding: 1.25rem 2.5rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .btn-outline.btn-lg {
+      padding: 1.5rem 3rem;
+    }
+  }
+  
+  /* Warning Buttons - Amber Gradient */
+  .btn-warning {
+    background: linear-gradient(135deg, var(--color-warning) 0%, #EA580C 100%);
+    color: var(--color-text-white);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  }
+  
+  .btn-warning:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
+    filter: brightness(1.1);
+  }
+  
+  /* Error Buttons - Red Gradient */
+  .btn-error {
+    background: linear-gradient(135deg, var(--color-error) 0%, #DC2626 100%);
+    color: var(--color-text-white);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+  }
+  
+  .btn-error:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(229, 57, 53, 0.45);
+    filter: brightness(1.1);
+  }
+  
+      /* Text Contrast Utility Classes */
+      .text-on-light {
+        color: var(--brand-text-dark);       /* High contrast for white/light backgrounds */
+      }
+      
+      .text-on-dark {
+        color: var(--color-text-white);      /* White text for dark backgrounds */
+      }
+      
+      .text-muted-on-light {
+        color: var(--brand-text-muted);      /* Better contrast muted text for light backgrounds */
+      }
+      
+      .text-subtle-on-light {
+        color: var(--brand-text-subtle);     /* Subtle text for light backgrounds */
+      }
+      
+      /* Enhanced Letter Spacing for Dark Text on Light Backgrounds */
+      .text-enhanced {
+        letter-spacing: 0.025em;             /* Enhanced readability for dark text */
+      }
+      
+      .text-enhanced-subtle {
+        letter-spacing: 0.01em;              /* Subtle enhancement for body text */
+      }
+      
+      /* Animation Classes */
+      .fade-in {
+        @apply animate-fade-in;
+      }
   
   .slide-up {
     @apply animate-slide-up;

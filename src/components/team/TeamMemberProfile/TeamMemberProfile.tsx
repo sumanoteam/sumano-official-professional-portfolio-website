@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { 
   EnvelopeIcon, 
   CodeBracketIcon, 
@@ -12,12 +11,15 @@ import { TeamMember } from '../../../types/team';
 interface TeamMemberProfileProps {
   member: TeamMember;
   showFullProfile?: boolean;
+  onOpenModal?: () => void;
 }
 
 export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({ 
   member, 
-  showFullProfile = false 
+  showFullProfile = false,
+  onOpenModal
 }) => {
+  
   const {
     name,
     role,
@@ -259,9 +261,8 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
       <p className="text-brand-orange font-medium mb-2">{role}</p>
       <p className="small mb-4">{title}</p>
       <Button 
-        as={Link} 
-        to={`/team/${member.id}`}
-        variant="success"
+        onClick={onOpenModal}
+        variant="primary"
         className="w-full"
       >
         Learn More

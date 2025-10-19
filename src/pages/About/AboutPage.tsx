@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { 
   CheckCircleIcon, 
   UserGroupIcon, 
@@ -14,6 +15,7 @@ import { TeamSection } from '../../components/team/TeamSection';
 import { TEAM_MEMBERS } from '../../constants/team';
 import { Container } from '../../components/layout/Container';
 import { HeroBackground } from '../../components/ui/HeroBackground';
+import { Button } from '../../components/ui/Button/Button';
 import { HERO_BACKGROUNDS, HERO_HEIGHTS } from '../../constants/heroBackgrounds';
 import { ROUTES } from '../../constants/routes';
 
@@ -150,16 +152,13 @@ export const AboutPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to={`${ROUTES.ABOUT}#our-team`}
-                className="btn btn-primary px-8 py-3 text-lg"
+                className="btn-primary btn-lg"
               >
                 Meet Our Team
               </Link>
-              <Link
-                to={ROUTES.CONTACT}
-                className="btn btn-outline border-white text-white hover:bg-white hover:text-brand-navy px-8 py-3 text-lg"
-              >
+              <Button variant="outline" size="lg" as="a" href={ROUTES.CONTACT} outlineColor="primary">
                 Get in Touch
-              </Link>
+              </Button>
             </div>
           </div>
         </Container>
@@ -171,8 +170,8 @@ export const AboutPage: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-brand-orange mb-2">{stat.value}</div>
-                <div className="text-brand-dark/80">{stat.label}</div>
+                <div className="text-4xl font-bold text-brand-primary mb-2">{stat.value}</div>
+                <div className="text-brand-text-muted-enhanced text-enhanced-subtle">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -185,7 +184,7 @@ export const AboutPage: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="h2 mb-6">Our Story</h2>
-              <div className="space-y-4 text-brand-dark/80 leading-relaxed">
+              <div className="space-y-4 text-brand-text-base leading-relaxed text-enhanced-subtle">
                 <p>
                   Founded in 2016, Sumano began as a small team of passionate developers who believed 
                   technology could solve real-world problems. What started as a vision to create 
@@ -202,11 +201,11 @@ export const AboutPage: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-brand-orange/10 to-brand-orange/20 rounded-lg p-8">
+            <div className="bg-brand-primary rounded-lg p-8 shadow-lg">
               <div className="text-center">
-                <RocketLaunchIcon className="h-16 w-16 text-brand-orange mx-auto mb-4" />
-                <h3 className="h3 mb-4">Our Mission</h3>
-                <p className="text-brand-dark/80">
+                <RocketLaunchIcon className="h-16 w-16 text-brand-cta-blue-light mx-auto mb-4" />
+                <h3 className="h3 mb-4 text-white">Our Mission</h3>
+                <p className="text-white text-enhanced-subtle">
                   To empower businesses through innovative technology solutions that are not just 
                   functional, but transformative.
                 </p>
@@ -224,7 +223,7 @@ export const AboutPage: React.FC = () => {
         <Container>
           <div className="text-center mb-12">
             <h2 className="h2 mb-4">Our Values</h2>
-            <p className="text-xl text-brand-dark/80 max-w-3xl mx-auto">
+            <p className="text-xl text-brand-text-muted-enhanced max-w-3xl mx-auto text-enhanced-subtle">
               These core values guide everything we do and shape our company culture.
             </p>
           </div>
@@ -233,7 +232,7 @@ export const AboutPage: React.FC = () => {
               <div key={index} className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
                 <div className="flex justify-center mb-4">{value.icon}</div>
                 <h3 className="h3 mb-3">{value.title}</h3>
-                <p className="text-brand-dark/80">{value.description}</p>
+                <p className="text-brand-text-base text-enhanced-subtle">{value.description}</p>
               </div>
             ))}
           </div>
@@ -243,59 +242,109 @@ export const AboutPage: React.FC = () => {
       {/* Technology Expertise */}
       <div className="py-16">
         <Container>
-          <div className="text-center mb-12">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="h2 mb-4">Technology Expertise</h2>
-            <p className="text-xl text-brand-dark/80 max-w-3xl mx-auto">
+            <p className="text-xl text-brand-text-muted-enhanced max-w-3xl mx-auto text-enhanced-subtle">
               We stay at the forefront of technology, mastering the tools and frameworks that power modern applications.
             </p>
-          </div>
-          <div className="grid grid-cols-4 gap-6">
+          </motion.div>
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             {technologies.map((tech, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
-                <div className="flex justify-center mb-3">
-                  {tech.icon}
-                </div>
-                <span className={`text-base font-medium ${tech.color}`}>{tech.name}</span>
-              </div>
+              <motion.div 
+                key={index} 
+                className="group bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 border border-gray-100 hover:border-brand-primary/20 relative overflow-hidden"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1,
+                  ease: "easeOut"
+                }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  y: -8,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+              >
+                {/* Hover Background Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                
+                {/* Icon Container with Enhanced Styling */}
+                <motion.div 
+                  className="flex justify-center mb-4 relative z-10"
+                  whileHover={{ 
+                    scale: 1.1,
+                    rotate: 5,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <div className="w-16 h-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl flex items-center justify-center group-hover:from-brand-primary/10 group-hover:to-brand-accent/10 transition-all duration-500 shadow-md group-hover:shadow-lg">
+                    {tech.icon}
+                  </div>
+                </motion.div>
+                
+                {/* Technology Name with Enhanced Typography */}
+                <motion.span 
+                  className={`text-base font-semibold ${tech.color} relative z-10 group-hover:text-brand-primary transition-colors duration-300`}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {tech.name}
+                </motion.span>
+                
+                {/* Subtle Glow Effect */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 -translate-x-full group-hover:translate-x-full"></div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </Container>
       </div>
         
       {/* Why Choose Us */}
-      <div className="py-16 bg-brand-light">
+      <div className="py-16 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="h2 mb-4">Why Choose Sumano?</h2>
-            <p className="text-xl text-brand-dark/80 max-w-3xl mx-auto">
+            <p className="text-xl text-brand-text-muted-enhanced max-w-3xl mx-auto text-enhanced-subtle">
               We combine technical expertise with business acumen to deliver solutions that truly matter.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-brand-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-brand-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <GlobeAltIcon className="h-8 w-8 text-white" />
               </div>
               <h3 className="h3 mb-3">Global Perspective</h3>
-              <p className="text-brand-dark/80">
+              <p className="text-brand-text-base text-enhanced-subtle">
                 We understand diverse markets and create solutions that work across different cultures and regions.
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-brand-teal rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-brand-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <CheckCircleIcon className="h-8 w-8 text-white" />
               </div>
               <h3 className="h3 mb-3">Proven Track Record</h3>
-              <p className="text-brand-dark/80">
+              <p className="text-brand-text-base text-enhanced-subtle">
                 Our portfolio speaks for itself with successful projects across various industries and scales.
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-brand-navy rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-brand-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <UserGroupIcon className="h-8 w-8 text-white" />
               </div>
               <h3 className="h3 mb-3">Dedicated Support</h3>
-              <p className="text-brand-dark/80">
+              <p className="text-brand-text-base text-enhanced-subtle">
                 We're not just developers; we're your long-term technology partners committed to your success.
               </p>
             </div>
@@ -304,20 +353,33 @@ export const AboutPage: React.FC = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="py-16 bg-brand-navy text-white">
-        <Container className="text-center">
-          <h2 className="h2 mb-4 text-white">Ready to Work With Us?</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and see how we can help bring your vision to life.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn btn-primary px-8 py-3">
-              Start a Project
-            </button>
-            <button className="btn btn-outline border-white text-white hover:bg-white hover:text-brand-navy px-8 py-3">
-              View Our Work
-            </button>
-          </div>
+      <div className="py-20 bg-gradient-to-br from-brand-cta-blue via-brand-primary to-brand-primary-dark text-white relative">
+        <Container className="text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="h2 mb-6 text-white">Ready to Work With Us?</h2>
+            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Let's discuss your project and see how we can help bring your vision to life.
+            </p>
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-6 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <button className="btn-primary btn-lg">
+                Start a Project
+              </button>
+              <Button variant="outline" size="lg" outlineColor="ctaBlue" className="shadow-lg hover:shadow-xl">
+                View Our Work
+              </Button>
+            </motion.div>
+          </motion.div>
         </Container>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { ROUTES, NAVIGATION_ITEMS } from '../../../constants/routes';
 import { CONFIG } from '../../../constants/config';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { scrollToElement } from '../../../utils/scrollUtils';
+import { Button } from '../../ui/Button/Button';
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -66,16 +67,16 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-brand-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to={ROUTES.HOME} className="flex items-center">
-              <div className="w-8 h-8 bg-brand-orange rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+              <div className="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center">
+                <span className="text-brand-secondary font-bold text-lg">S</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-brand-navy">
+              <span className="ml-2 text-xl font-bold text-brand-primary">
                 {CONFIG.APP.NAME}
               </span>
             </Link>
@@ -98,8 +99,8 @@ export const Header: React.FC = () => {
                         onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
                         className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1 ${
                           location.pathname === item.path
-                            ? 'text-brand-orange bg-brand-orange/10'
-                            : 'text-brand-dark hover:text-brand-navy hover:bg-brand-light'
+                            ? 'text-brand-primary bg-brand-primary/10'
+                            : 'text-brand-text hover:text-brand-accent hover:bg-brand-bg'
                         }`}
                         title={item.description}
                       >
@@ -118,7 +119,7 @@ export const Header: React.FC = () => {
                           <Link
                             to={ROUTES.SERVICES}
                             onClick={() => setIsServicesDropdownOpen(false)}
-                            className="block w-full text-left px-3 py-2 text-sm font-semibold text-brand-orange hover:bg-brand-orange/10 rounded-md transition-colors duration-200 border-b border-gray-100 mb-2"
+                            className="block w-full text-left px-3 py-2 text-sm font-semibold text-brand-primary hover:bg-brand-primary/10 rounded-md transition-colors duration-200 border-b border-brand-border mb-2"
                           >
                             View All Services
                           </Link>
@@ -126,7 +127,7 @@ export const Header: React.FC = () => {
                             <button
                               key={service.label}
                               onClick={() => navigateToService(service.sectionId)}
-                              className="block w-full text-left px-3 py-2 text-sm text-brand-dark hover:text-brand-orange hover:bg-brand-orange/10 rounded-md transition-colors duration-200"
+                              className="block w-full text-left px-3 py-2 text-sm text-brand-text hover:text-brand-accent hover:bg-brand-accent/10 rounded-md transition-colors duration-200"
                             >
                               {service.label}
                             </button>
@@ -144,8 +145,8 @@ export const Header: React.FC = () => {
                     to={item.path}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                       location.pathname === item.path
-                        ? 'text-brand-orange bg-brand-orange/10'
-                        : 'text-brand-dark hover:text-brand-navy hover:bg-brand-light'
+                        ? 'text-brand-primary bg-brand-primary/10'
+                        : 'text-brand-text hover:text-brand-accent hover:bg-brand-bg'
                     }`}
                     title={item.description}
                   >
@@ -157,16 +158,19 @@ export const Header: React.FC = () => {
 
             {/* OMS Button */}
             <div className="relative group">
-              <Link
-                to={ROUTES.OMS}
-                className="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-brand-teal text-white hover:bg-brand-tealHover"
+              <Button
+                variant="accent"
+                size="sm"
+                as="a"
+                href={ROUTES.OMS}
+                className="px-3 py-2"
               >
                 OMS
-              </Link>
+              </Button>
               {/* Tooltip */}
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 px-3 py-2 bg-brand-navy text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 shadow-lg" style={{ fontSize: '0.5rem' }}>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 px-3 py-2 bg-brand-primary text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 shadow-lg text-xs">
                 Operational Management System
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-brand-navy"></div>
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-brand-primary"></div>
               </div>
             </div>
           </div>

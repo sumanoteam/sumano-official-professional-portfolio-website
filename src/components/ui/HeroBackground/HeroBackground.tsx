@@ -14,8 +14,8 @@ export const HeroBackground: React.FC<HeroBackgroundProps> = ({
   backgroundImage,
   overlayOpacity = 0.7,
   className = '',
-  gradientFrom = 'from-brand-navy',
-  gradientTo = 'to-brand-navyHover'
+  gradientFrom = 'from-brand-primary',
+  gradientTo = 'to-brand-secondary'
 }) => {
   return (
     <section className={`relative bg-gradient-to-br ${gradientFrom} ${gradientTo} text-white overflow-hidden ${className}`}>
@@ -32,7 +32,7 @@ export const HeroBackground: React.FC<HeroBackgroundProps> = ({
       <div 
         className="absolute inset-0"
         style={{
-          backgroundColor: `rgba(35, 78, 112, ${overlayOpacity})`, // brand-navy with opacity
+          backgroundColor: `rgba(26, 62, 140, ${overlayOpacity})`, // brand-primary with opacity
         }}
       />
       

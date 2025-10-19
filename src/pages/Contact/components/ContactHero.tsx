@@ -1,15 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CONTACT_CONTENT } from '../../../constants/contact';
-import { scrollToElement } from '../../../utils/scrollUtils';
 import { Container } from '../../../components/layout/Container';
 import { HeroBackground } from '../../../components/ui/HeroBackground';
+import { Button } from '../../../components/ui/Button/Button';
 import { HERO_BACKGROUNDS, HERO_HEIGHTS } from '../../../constants/heroBackgrounds';
 
 export const ContactHero: React.FC = () => {
-  const handleCTAClick = () => {
-    scrollToElement('contact-form', 80);
-  };
 
   return (
     <HeroBackground
@@ -45,18 +42,23 @@ export const ContactHero: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <button
-              onClick={handleCTAClick}
-              className="btn btn-primary px-8 py-4"
+            <Button
+              variant="primary"
+              size="lg"
+              as="a"
+              href="#contact-form"
             >
               {CONTACT_CONTENT.HERO.CTA_TEXT}
-            </button>
-            <button
-              onClick={() => scrollToElement('contact-details', 80)}
-              className="btn btn-outline border-white text-white hover:bg-white hover:text-brand-navy px-8 py-4"
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              as="a"
+              href="#contact-details"
+              outlineColor="navy"
             >
               Contact Information
-            </button>
+            </Button>
           </motion.div>
         </div>
       </Container>
