@@ -16,6 +16,13 @@
   --color-cta-blue-light: #4A7AFF;
   --color-cta-blue-dark: #0F3BB8;
   
+  /* Gold Accent Colors - Premium Gold (Energy, Conversion) */
+  --brand-gold: #BE9256;
+  --brand-gold-hover: #A77E48;
+  --brand-gold-light: #D4B584;
+  --brand-gold-dark: #8B6F3F;
+  --brand-gold-focus: rgba(190, 146, 86, 0.4);
+  
   /* Accent Colors - Electric Teal Green (Innovation, Success) */
   --color-accent: #70EE9C;
   --color-accent-hover: #5AD88A;
@@ -57,15 +64,17 @@
   --shadow-card: rgba(0, 0, 0, 0.1);
   --shadow-glow: rgba(30, 80, 255, 0.3);
   --shadow-glow-hover: rgba(30, 80, 255, 0.45);
+  --shadow-gold: rgba(190, 146, 86, 0.3);
+  --shadow-gold-hover: rgba(190, 146, 86, 0.45);
   --shadow-success: rgba(112, 238, 156, 0.3);
   
   /* Primary Button Design Tokens - Unified System */
-  --btn-primary-start: #1E50FF;                    /* CTA Blue */
-  --btn-primary-end: #163DCC;                      /* Hover darker CTA Blue */
+  --btn-primary-start: #BE9256;                    /* Gold */
+  --btn-primary-end: #A77E48;                      /* Hover darker Gold */
   --btn-primary-text: #FFFFFF;                     /* Text color on primary */
   --btn-primary-focus: #70EE9C;                    /* Focus ring accent */
-  --btn-primary-shadow: rgba(30, 80, 255, 0.3);    /* Default shadow */
-  --btn-primary-shadow-hover: rgba(30, 80, 255, 0.45); /* Hover shadow */
+  --btn-primary-shadow: rgba(190, 146, 86, 0.3);    /* Default shadow */
+  --btn-primary-shadow-hover: rgba(190, 146, 86, 0.45); /* Hover shadow */
   --btn-primary-disabled: #9CA3AF;                 /* Disabled color */
   
   /* Transitions */
@@ -341,16 +350,16 @@
     }
   }
   
-  /* Secondary Buttons - Deep Tech Blue Gradient */
+  /* Secondary Buttons - Gold Gradient */
   .btn-secondary {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+    background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-hover) 100%);
     color: var(--color-text-white);
-    box-shadow: 0 4px 12px rgba(26, 62, 140, 0.3);
+    box-shadow: 0 4px 12px var(--shadow-gold);
   }
   
   .btn-secondary:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(26, 62, 140, 0.45);
+    box-shadow: 0 6px 18px var(--shadow-gold-hover);
     filter: brightness(1.1);
   }
   
@@ -430,8 +439,8 @@
   .btn-outline:hover:not(:disabled) {
     transform: translateY(-2px);
     background: #FFFFFF;
-    color: var(--color-cta-blue);
-    box-shadow: 0 6px 18px rgba(30, 80, 255, 0.45);
+    color: var(--brand-gold);
+    box-shadow: 0 6px 18px var(--shadow-gold-hover);
     filter: brightness(1.1);
   }
   

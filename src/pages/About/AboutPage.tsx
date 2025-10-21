@@ -156,7 +156,7 @@ export const AboutPage: React.FC = () => {
               >
                 Meet Our Team
               </Link>
-              <Button variant="outline" size="lg" as="a" href={ROUTES.CONTACT} outlineColor="primary">
+              <Button variant="outline" size="lg" as="a" href={ROUTES.CONTACT} outlineColor="gold">
                 Get in Touch
               </Button>
             </div>
@@ -375,7 +375,7 @@ export const AboutPage: React.FC = () => {
               <button className="btn-primary btn-lg">
                 Start a Project
               </button>
-              <Button variant="outline" size="lg" outlineColor="ctaBlue" className="shadow-lg hover:shadow-xl">
+              <Button variant="outline" size="lg" outlineColor="gold" className="shadow-lg hover:shadow-xl">
                 View Our Work
               </Button>
             </motion.div>

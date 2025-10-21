@@ -53,7 +53,7 @@ export const ServiceHero: React.FC = () => {
               variant="outline"
               size="lg"
               onClick={() => scrollToElement('web-development', 80)}
-              outlineColor="navy"
+              outlineColor="gold"
             >
               Explore Our Services
             </Button>

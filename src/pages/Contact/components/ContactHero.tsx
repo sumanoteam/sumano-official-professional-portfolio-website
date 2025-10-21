@@ -55,7 +55,7 @@ export const ContactHero: React.FC = () => {
               size="lg"
               as="a"
               href="#contact-details"
-              outlineColor="navy"
+              outlineColor="gold"
             >
               Contact Information
             </Button>

@@ -2,13 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES, NAVIGATION_ITEMS } from '../../../constants/routes';
 import { CONFIG } from '../../../constants/config';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { scrollToElement } from '../../../utils/scrollUtils';
 import { Button } from '../../ui/Button/Button';
+import { MobileMainNav } from '../MobileMainNav';
 
 export const Header: React.FC = () => {
   const location = useLocation();
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -99,8 +101,8 @@ export const Header: React.FC = () => {
                         onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
                         className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1 ${
                           location.pathname === item.path
-                            ? 'text-brand-primary bg-brand-primary/10'
-                            : 'text-brand-text hover:text-brand-accent hover:bg-brand-bg'
+                            ? 'text-brand-gold bg-brand-gold/10'
+                            : 'text-gray-700 hover:text-brand-gold hover:bg-brand-gold/5'
                         }`}
                         title={item.description}
                       >
@@ -119,7 +121,7 @@ export const Header: React.FC = () => {
                           <Link
                             to={ROUTES.SERVICES}
                             onClick={() => setIsServicesDropdownOpen(false)}
-                            className="block w-full text-left px-3 py-2 text-sm font-semibold text-brand-primary hover:bg-brand-primary/10 rounded-md transition-colors duration-200 border-b border-brand-border mb-2"
+                            className="block w-full text-left px-3 py-2 text-sm font-semibold text-brand-gold hover:bg-brand-gold/10 rounded-md transition-colors duration-200 border-b border-brand-border mb-2"
                           >
                             View All Services
                           </Link>
@@ -127,7 +129,7 @@ export const Header: React.FC = () => {
                             <button
                               key={service.label}
                               onClick={() => navigateToService(service.sectionId)}
-                              className="block w-full text-left px-3 py-2 text-sm text-brand-text hover:text-brand-accent hover:bg-brand-accent/10 rounded-md transition-colors duration-200"
+                              className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-brand-gold hover:bg-brand-gold/10 rounded-md transition-colors duration-200"
                             >
                               {service.label}
                             </button>
@@ -145,8 +147,8 @@ export const Header: React.FC = () => {
                     to={item.path}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                       location.pathname === item.path
-                        ? 'text-brand-primary bg-brand-primary/10'
-                        : 'text-brand-text hover:text-brand-accent hover:bg-brand-bg'
+                        ? 'text-brand-gold bg-brand-gold/10'
+                        : 'text-gray-700 hover:text-brand-gold hover:bg-brand-gold/5'
                     }`}
                     title={item.description}
                   >
@@ -163,14 +165,14 @@ export const Header: React.FC = () => {
                 size="sm"
                 as="a"
                 href={ROUTES.OMS}
-                className="px-3 py-2"
+                className="px-3 py-2 bg-brand-gold hover:bg-brand-gold-hover text-white shadow-md"
               >
                 OMS
               </Button>
               {/* Tooltip */}
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 px-3 py-2 bg-brand-primary text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 shadow-lg text-xs">
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 px-3 py-2 bg-brand-gold text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 shadow-lg text-xs">
                 Operational Management System
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-brand-primary"></div>
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-brand-gold"></div>
               </div>
             </div>
           </div>
@@ -179,16 +181,21 @@ export const Header: React.FC = () => {
           <div className="md:hidden">
             <button
               type="button"
-              className="text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-gray-600 hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 p-3 rounded-md transition-colors duration-200 min-h-[48px] min-w-[48px] flex items-center justify-center"
               aria-label="Open menu"
             >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <Bars3Icon className="h-6 w-6" />
             </button>
           </div>
         </div>
       </div>
+      
+      {/* Mobile Navigation */}
+      <MobileMainNav 
+        isOpen={isMobileMenuOpen} 
+        onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+      />
     </header>
   );
 };

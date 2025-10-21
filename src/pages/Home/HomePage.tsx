@@ -28,10 +28,10 @@ export const HomePage: React.FC = () => {
             <Button variant="primary" size="lg" as="a" href={`${ROUTES.ABOUT}#our-team`}>
               Meet Our Team
             </Button>
-            <Button variant="outline" size="lg" as="a" href={ROUTES.PORTFOLIO} outlineColor="ctaBlue">
+            <Button variant="outline" size="lg" as="a" href={ROUTES.PORTFOLIO} outlineColor="gold">
               View Our Work
             </Button>
-            <Button variant="outline" size="lg" as="a" href={ROUTES.SERVICES} outlineColor="ctaBlue">
+            <Button variant="outline" size="lg" as="a" href={ROUTES.SERVICES} outlineColor="gold">
               Our Services
             </Button>
           </div>

@@ -50,7 +50,7 @@ export const MobileServicesNav: React.FC<MobileServicesNavProps> = ({ isOpen, on
       {/* Mobile Menu Button */}
       <button
         onClick={onToggle}
-        className="md:hidden fixed top-4 right-4 z-50 bg-[#1e3a8a] text-white p-3 rounded-lg shadow-lg"
+        className="md:hidden fixed top-4 right-4 z-[80] bg-brand-gold text-white p-4 rounded-lg shadow-lg hover:bg-brand-gold-hover transition-all duration-200 min-h-[48px] min-w-[48px] flex items-center justify-center"
         aria-label="Toggle services navigation"
       >
         {isOpen ? (
@@ -68,7 +68,7 @@ export const MobileServicesNav: React.FC<MobileServicesNavProps> = ({ isOpen, on
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-40 md:hidden"
+              className="fixed inset-0 bg-black/50 z-[75] md:hidden"
               onClick={onToggle}
             />
             
@@ -76,12 +76,12 @@ export const MobileServicesNav: React.FC<MobileServicesNavProps> = ({ isOpen, on
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 md:hidden"
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[85] md:hidden"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-xl font-bold text-[#1e3a8a]">Our Services</h3>
+                  <h3 className="text-xl font-bold text-brand-gold">Our Services</h3>
                   <button
                     onClick={onToggle}
                     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -96,10 +96,10 @@ export const MobileServicesNav: React.FC<MobileServicesNavProps> = ({ isOpen, on
                     <button
                       key={service.id}
                       onClick={() => handleServiceClick(service.id)}
-                      className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
+                      className={`w-full text-left px-4 py-4 rounded-lg transition-all duration-300 min-h-[48px] flex items-center transform hover:scale-[1.02] ${
                         activeSection === service.id
-                          ? 'bg-[#3b82f6] text-white shadow-md'
-                          : 'text-gray-700 hover:bg-gray-100'
+                          ? 'bg-brand-gold text-white shadow-md'
+                          : 'text-gray-700 hover:bg-brand-gold/10 hover:text-brand-gold active:bg-brand-gold/20'
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -118,7 +118,7 @@ export const MobileServicesNav: React.FC<MobileServicesNavProps> = ({ isOpen, on
                       scrollToElement('web-development', 80);
                       onToggle();
                     }}
-                    className="w-full bg-[#22c55e] hover:bg-[#16a34a] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200"
+                    className="w-full bg-brand-gold hover:bg-brand-gold-hover text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
                   >
                     Get Started
                   </button>
