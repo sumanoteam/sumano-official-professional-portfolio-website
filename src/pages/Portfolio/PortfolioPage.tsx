@@ -43,7 +43,7 @@ export const PortfolioPage: React.FC = () => {
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category
-                  ? 'bg-brand-orange text-white shadow-lg'
+                  ? 'bg-brand-gold text-white shadow-lg'
                   : 'bg-white/20 text-white hover:bg-white/30 hover:text-white'
               }`}
             >
