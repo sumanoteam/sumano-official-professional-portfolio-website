@@ -76,7 +76,7 @@ export const Header: React.FC = () => {
           <div className="flex-shrink-0">
             <Link to={ROUTES.HOME} className="flex items-center hover:no-underline">
               <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center hover:bg-brand-gold">
-                <span className="text-brand-primary font-bold text-lg hover:text-brand-primary">S</span>
+                <span className="text-white font-bold text-lg hover:text-white">S</span>
               </div>
               <span className="ml-2 text-xl font-bold text-brand-primary hover:text-brand-primary">
                 {CONFIG.APP.NAME}
