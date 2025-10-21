@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 // Using simple SVG icons instead of react-icons to avoid TypeScript issues
 import { ServiceHero } from './components/ServiceHero';
 import { ServiceCard } from './components/ServiceCard';
-import { MobileServicesNav } from './components/MobileServicesNav';
 import { FloatingActionButton } from './components/FloatingActionButton';
 import { scrollToElement } from '../../utils/scrollUtils';
 import { Container } from '../../components/layout/Container';
@@ -11,7 +10,6 @@ import { Button } from '../../components/ui/Button/Button';
 import { ROUTES } from '../../constants/routes';
 
 export const ServicesPage: React.FC = () => {
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   // Handle scrolling to section when page loads with hash
   useEffect(() => {
@@ -138,11 +136,6 @@ export const ServicesPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Mobile Navigation */}
-      <MobileServicesNav 
-        isOpen={isMobileNavOpen} 
-        onToggle={() => setIsMobileNavOpen(!isMobileNavOpen)} 
-      />
       
       {/* Hero Section */}
       <ServiceHero />

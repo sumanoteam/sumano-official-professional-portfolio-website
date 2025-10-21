@@ -70,20 +70,20 @@ export const PortfolioPage: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">{portfolioProjects.length}+</div>
-            <div className="text-gray-600">Projects Completed</div>
+            <div className="text-3xl font-bold text-brand-gold mb-2">{portfolioProjects.length}+</div>
+            <div className="text-white">Projects Completed</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
-            <div className="text-gray-600">Client Satisfaction</div>
+            <div className="text-3xl font-bold text-brand-gold mb-2">100%</div>
+            <div className="text-white">Client Satisfaction</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">50+</div>
-            <div className="text-gray-600">Technologies Used</div>
+            <div className="text-3xl font-bold text-brand-gold mb-2">50+</div>
+            <div className="text-white">Technologies Used</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
-            <div className="text-gray-600">Support Available</div>
+            <div className="text-3xl font-bold text-brand-gold mb-2">24/7</div>
+            <div className="text-white">Support Available</div>
           </div>
         </motion.div>
       </div>

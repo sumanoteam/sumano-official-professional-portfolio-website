@@ -74,19 +74,19 @@ export const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to={ROUTES.HOME} className="flex items-center">
-              <div className="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center">
-                <span className="text-brand-secondary font-bold text-lg">S</span>
+            <Link to={ROUTES.HOME} className="flex items-center hover:no-underline">
+              <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center hover:bg-brand-gold">
+                <span className="text-brand-primary font-bold text-lg hover:text-brand-primary">S</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-brand-primary">
+              <span className="ml-2 text-xl font-bold text-brand-primary hover:text-brand-primary">
                 {CONFIG.APP.NAME}
               </span>
             </Link>
           </div>
 
-          {/* Navigation and OMS Button */}
-          <div className="flex items-center space-x-8">
-            <nav className="hidden md:flex space-x-8">
+          {/* Desktop Navigation and OMS Button */}
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex space-x-8">
               {NAVIGATION_ITEMS.map((item) => {
                 if (item.path === ROUTES.SERVICES) {
                   return (
@@ -104,7 +104,6 @@ export const Header: React.FC = () => {
                             ? 'text-brand-gold bg-brand-gold/10'
                             : 'text-gray-700 hover:text-brand-gold hover:bg-brand-gold/5'
                         }`}
-                        title={item.description}
                       >
                         {item.label}
                         <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${
@@ -150,7 +149,6 @@ export const Header: React.FC = () => {
                         ? 'text-brand-gold bg-brand-gold/10'
                         : 'text-gray-700 hover:text-brand-gold hover:bg-brand-gold/5'
                     }`}
-                    title={item.description}
                   >
                     {item.label}
                   </Link>
@@ -159,30 +157,25 @@ export const Header: React.FC = () => {
             </nav>
 
             {/* OMS Button */}
-            <div className="relative group">
+            <div className="relative">
               <Button
-                variant="accent"
+                variant="primary"
                 size="sm"
                 as="a"
                 href={ROUTES.OMS}
-                className="px-3 py-2 bg-brand-gold hover:bg-brand-gold-hover text-white shadow-md"
+                className="px-3 py-2"
               >
                 OMS
               </Button>
-              {/* Tooltip */}
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 px-3 py-2 bg-brand-gold text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 shadow-lg text-xs">
-                Operational Management System
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-brand-gold"></div>
-              </div>
             </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden mobile-hamburger flex items-center z-50">
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-600 hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 p-3 rounded-md transition-colors duration-200 min-h-[48px] min-w-[48px] flex items-center justify-center"
+              className="text-gray-600 hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 p-3 rounded-md transition-colors duration-200 min-h-[48px] min-w-[48px] flex items-center justify-center relative"
               aria-label="Open menu"
             >
               <Bars3Icon className="h-6 w-6" />
