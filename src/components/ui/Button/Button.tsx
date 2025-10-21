@@ -7,7 +7,7 @@ interface BaseButtonProps {
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
-  outlineColor?: 'ctaBlue' | 'navy' | 'primary';
+  outlineColor?: 'ctaBlue' | 'navy' | 'primary' | 'gold';
 }
 
 interface ButtonAsButtonProps extends BaseButtonProps {
@@ -51,7 +51,7 @@ export const Button: React.FC<ButtonProps> = ({
       btn-primary
     `,
     secondary: `
-      bg-gradient-to-r from-brand-primary to-brand-primary-hover
+      bg-gradient-to-r from-brand-gold to-brand-gold-hover
       text-white
       shadow-md hover:shadow-lg
       hover:-translate-y-1 hover:brightness-110
@@ -98,7 +98,8 @@ export const Button: React.FC<ButtonProps> = ({
   const outlineColorClasses = {
     ctaBlue: 'hover:text-brand-cta-blue',
     navy: 'hover:text-brand-navy',
-    primary: 'hover:text-brand-primary'
+    primary: 'hover:text-brand-primary',
+    gold: 'hover:text-brand-gold'
   };
 
   const outlineColorClass = variant === 'outline' ? outlineColorClasses[outlineColor] : '';

@@ -21,6 +21,13 @@ module.exports = {
           'cta-blue-light': '#4A7AFF',
           'cta-blue-dark': '#0F3BB8',
           
+          // Gold Accent Colors - Premium Gold (Energy, Conversion)
+          gold: '#BE9256',
+          'gold-hover': '#A77E48',
+          'gold-light': '#D4B584',
+          'gold-dark': '#8B6F3F',
+          'gold-focus': 'rgba(190, 146, 86, 0.4)',
+          
           // Accent Colors - Electric Teal Green (Innovation, Success)
           accent: '#70EE9C',
           'accent-hover': '#5AD88A',

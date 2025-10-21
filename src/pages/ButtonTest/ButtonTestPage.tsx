@@ -52,10 +52,10 @@ export const ButtonTestPage: React.FC = () => {
           <div className="space-y-4">
             <h3 className="h3 text-brand-primary">Outline Buttons</h3>
             <div className="space-y-3">
-              <Button variant="outline" size="sm" outlineColor="ctaBlue">Small Outline</Button>
-              <Button variant="outline" size="md" outlineColor="ctaBlue">Medium Outline</Button>
-              <Button variant="outline" size="lg" outlineColor="ctaBlue">Large Outline</Button>
-              <Button variant="outline" disabled outlineColor="ctaBlue">Disabled Outline</Button>
+              <Button variant="outline" size="sm" outlineColor="gold">Small Outline</Button>
+              <Button variant="outline" size="md" outlineColor="gold">Medium Outline</Button>
+              <Button variant="outline" size="lg" outlineColor="gold">Large Outline</Button>
+              <Button variant="outline" disabled outlineColor="gold">Disabled Outline</Button>
             </div>
           </div>
 
@@ -103,7 +103,7 @@ export const ButtonTestPage: React.FC = () => {
                 <Button variant="primary" size="lg" className="w-full">
                   Get Started Now
                 </Button>
-                <Button variant="outline" size="lg" outlineColor="ctaBlue" className="w-full">
+                <Button variant="outline" size="lg" outlineColor="gold" className="w-full">
                   Learn More
                 </Button>
               </div>
