@@ -1,6 +1,7 @@
 import React from 'react';
 import { CONFIG } from '../../../constants/config';
 import { Container } from '../../layout/Container';
+import { TechSolutionIcon } from '../../ui/TechSolutionIcon';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,8 +11,8 @@ export const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+              <div className="flex items-center justify-center">
+                <TechSolutionIcon className="h-8 w-8 text-white" />
               </div>
               <span className="ml-2 text-xl font-bold">
                 {CONFIG.APP.NAME}

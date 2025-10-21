@@ -6,6 +6,7 @@ import { ChevronDownIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { scrollToElement } from '../../../utils/scrollUtils';
 import { Button } from '../../ui/Button/Button';
 import { MobileMainNav } from '../MobileMainNav';
+import { TechSolutionIcon } from '../../ui/TechSolutionIcon';
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -75,8 +76,8 @@ export const Header: React.FC = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to={ROUTES.HOME} className="flex items-center hover:no-underline">
-              <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center hover:bg-brand-gold">
-                <span className="text-brand-primary font-bold text-lg hover:text-brand-primary">S</span>
+              <div className="flex items-center justify-center">
+                <TechSolutionIcon className="h-8 w-8 text-brand-cta-blue-light" />
               </div>
               <span className="ml-2 text-xl font-bold text-brand-primary hover:text-brand-primary">
                 {CONFIG.APP.NAME}
