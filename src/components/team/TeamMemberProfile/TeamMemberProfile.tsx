@@ -65,9 +65,13 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
             <motion.img 
               src={image} 
               alt={name}
-              className="w-64 h-64 rounded-full border-4 border-brand-teal object-cover shadow-md"
+              className="w-64 h-64 rounded-full border-4 border-brand-teal object-cover object-top shadow-md"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
+              loading="lazy"
+              onError={(e) => {
+                console.warn(`Failed to load image for ${name}:`, image);
+              }}
             />
             <div className="text-left">
               <motion.h2 
@@ -253,9 +257,13 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
       <motion.img 
         src={image} 
         alt={name}
-        className="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-brand-teal"
+        className="w-32 h-32 mx-auto rounded-full mb-4 object-cover object-top border-4 border-brand-teal"
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
+        loading="lazy"
+        onError={(e) => {
+          console.warn(`Failed to load image for ${name}:`, image);
+        }}
       />
       <h3 className="h3 mb-2">{name}</h3>
       <p className="text-brand-orange font-medium mb-2">{role}</p>
