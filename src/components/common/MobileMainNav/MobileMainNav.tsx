@@ -34,7 +34,7 @@ export const MobileMainNav: React.FC<MobileMainNavProps> = ({ isOpen, onToggle }
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
             className="fixed top-0 right-0 h-full w-80 bg-white/95 backdrop-blur-md shadow-2xl z-[70] md:hidden"
           >
-            <div className="p-6 h-full flex flex-col">
+            <div className="p-6 h-full flex flex-col pb-8">
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-xl font-bold text-brand-gold">Menu</h3>
@@ -48,7 +48,7 @@ export const MobileMainNav: React.FC<MobileMainNavProps> = ({ isOpen, onToggle }
               </div>
 
               {/* Navigation Links */}
-              <nav className="flex-1 space-y-2">
+              <nav className="flex-1 space-y-2 overflow-y-auto">
                 {NAVIGATION_ITEMS.map((item) => (
                   <Link
                     key={item.path}
@@ -71,7 +71,7 @@ export const MobileMainNav: React.FC<MobileMainNavProps> = ({ isOpen, onToggle }
               </nav>
 
               {/* CTA Section */}
-              <div className="mt-8 pt-6 border-t border-gray-200 space-y-4">
+              <div className="mt-8 pt-6 border-t border-gray-200 space-y-4 flex-shrink-0">
                 <Button
                   variant="primary"
                   size="lg"
@@ -84,12 +84,12 @@ export const MobileMainNav: React.FC<MobileMainNavProps> = ({ isOpen, onToggle }
                 </Button>
                 
                 <Button
-                  variant="outline"
+                  variant="primary"
                   size="md"
                   as="a"
                   href={ROUTES.OMS}
                   onClick={onToggle}
-                  className="w-full border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-all duration-200"
+                  className="w-full"
                 >
                   OMS System
                 </Button>

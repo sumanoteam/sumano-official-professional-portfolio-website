@@ -10,8 +10,8 @@ export const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <div className="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center">
-                <span className="text-brand-secondary font-bold text-lg">S</span>
+              <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">S</span>
               </div>
               <span className="ml-2 text-xl font-bold">
                 {CONFIG.APP.NAME}
@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
             <div className="flex space-x-4">
               <a
                 href={CONFIG.ROUTING.MAIN_WEBSITE_URL}
-                className="text-white hover:text-brand-accent transition-colors duration-200"
+                className="text-white hover:text-brand-gold transition-colors duration-200"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -39,22 +39,22 @@ export const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/about" className="text-white hover:text-brand-accent transition-colors duration-200">
+                <a href="/about" className="text-white hover:text-brand-gold transition-colors duration-200">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="/team" className="text-white hover:text-brand-accent transition-colors duration-200">
+                <a href="/team" className="text-white hover:text-brand-gold transition-colors duration-200">
                   Our Team
                 </a>
               </li>
               <li>
-                <a href="/services" className="text-white hover:text-brand-accent transition-colors duration-200">
+                <a href="/services" className="text-white hover:text-brand-gold transition-colors duration-200">
                   Services
                 </a>
               </li>
               <li>
-                <a href="/portfolio" className="text-white hover:text-brand-accent transition-colors duration-200">
+                <a href="/portfolio" className="text-white hover:text-brand-gold transition-colors duration-200">
                   Portfolio
                 </a>
               </li>

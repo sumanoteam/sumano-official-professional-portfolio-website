@@ -46,7 +46,7 @@ export const FloatingActionButton: React.FC = () => {
                   stiffness: 200
                 }}
                 onClick={() => handleServiceClick(service.id)}
-                className="flex items-center gap-3 bg-white shadow-lg rounded-full px-4 py-3 text-gray-700 hover:bg-[#3b82f6] hover:text-white transition-all duration-200 min-w-[120px]"
+                className="flex items-center gap-3 bg-white shadow-lg rounded-full px-4 py-3 text-gray-700 hover:bg-brand-gold hover:text-white transition-all duration-200 min-w-[120px]"
               >
                 <service.icon className="w-5 h-5" />
                 <span className="text-sm font-medium">{service.label}</span>
@@ -61,7 +61,7 @@ export const FloatingActionButton: React.FC = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-[#1e3a8a] hover:bg-[#2563eb] text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200"
+        className="w-14 h-14 bg-brand-gold hover:bg-brand-gold-hover text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200"
         aria-label="Toggle services menu"
       >
         <motion.div

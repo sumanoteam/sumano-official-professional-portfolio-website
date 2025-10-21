@@ -578,3 +578,17 @@
     display: none;
   }
 }
+
+/* Ensure hamburger button is always visible on mobile devices */
+@media (max-width: 767px) {
+  .mobile-hamburger {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Force mobile navigation to be visible on small screens */
+  .md\\:hidden {
+    display: flex !important;
+  }
+}
