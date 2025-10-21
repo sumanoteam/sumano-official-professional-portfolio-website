@@ -177,7 +177,7 @@ export const TeamMemberModal: React.FC<TeamMemberModalProps> = ({
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-full object-cover border-4 border-brand-cta-blue shadow-lg"
+                  className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-full object-cover object-top border-4 border-brand-cta-blue shadow-lg"
                 />
               </div>
               

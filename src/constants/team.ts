@@ -7,7 +7,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Co-founder',
     title: 'Software Engineer, Data Scientist & AI Engineer',
     bio: 'Omar is a seasoned technologist passionate about solving business and social challenges through AI and data-driven solutions. His expertise bridges full-stack software development and applied artificial intelligence.',
-    image: '/images/team/omar.svg',
+    image: '/images/team/omar.jpg',
     socialLinks: {
       linkedin: 'https://linkedin.com/in/omar-manneh',
       email: 'omar@sumano.com',
@@ -76,7 +76,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Co-founder',
     title: 'Data Scientist | Data Analyst | IT Trainer',
     bio: 'Passionate, analytical, and results-driven Data Scientist and IT Trainer with over 8 years of combined experience in data analytics, education, and software development. Skilled in leveraging data to drive insights, improve learning systems, and build technology-driven solutions. Adept at teaching, mentoring, and leading technical initiatives that empower young professionals to become tech innovators.',
-    image: '/images/team/benis.svg',
+    image: '/images/team/benis.jpg',
     socialLinks: {
       linkedin: 'https://linkedin.com/in/benissula',
       email: 'sula.benis@gmail.com'
@@ -146,7 +146,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Designer',
     title: 'Video Graphic & Prompt Engineer',
     bio: 'Zill brings creativity and technical expertise together to create compelling visual experiences. As a prompt engineer, he specializes in AI-driven content creation and innovative design solutions.',
-    image: '/images/team/zill.svg',
+    image: '/images/team/zill.jpg',
     socialLinks: {
       linkedin: 'https://linkedin.com/in/zill-sula',
       email: 'zill@sumano.com',
