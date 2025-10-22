@@ -26,11 +26,19 @@ const sendViaEmailJS = async (formData: ContactFormData): Promise<ContactRespons
   try {
     // Check if EmailJS is configured
     if (!CONTACT_ENDPOINTS.EMAILJS_SERVICE_ID || !CONTACT_ENDPOINTS.EMAILJS_TEMPLATE_ID || !CONTACT_ENDPOINTS.EMAILJS_PUBLIC_KEY) {
-      throw new Error('EmailJS configuration missing');
+      console.warn('EmailJS configuration missing:', {
+        serviceId: !!CONTACT_ENDPOINTS.EMAILJS_SERVICE_ID,
+        templateId: !!CONTACT_ENDPOINTS.EMAILJS_TEMPLATE_ID,
+        publicKey: !!CONTACT_ENDPOINTS.EMAILJS_PUBLIC_KEY
+      });
+      throw new Error('EmailJS configuration missing. Please check your environment variables.');
     }
 
     // Dynamic import to avoid bundling EmailJS if not needed
     const emailjs = await import('@emailjs/browser');
+
+    // Initialize EmailJS with public key
+    emailjs.init(CONTACT_ENDPOINTS.EMAILJS_PUBLIC_KEY);
 
     const templateParams = {
       from_name: `${formData.firstName} ${formData.lastName}`,
@@ -41,23 +49,45 @@ const sendViaEmailJS = async (formData: ContactFormData): Promise<ContactRespons
       subject: formData.subject,
       message: formData.message,
       budget: formData.budget || 'Not specified',
-      to_name: 'Sumano Team'
+      to_name: 'Sumano Team',
+      reply_to: formData.email
     };
 
-    await emailjs.send(
+    console.log('Sending email via EmailJS with params:', {
+      serviceId: CONTACT_ENDPOINTS.EMAILJS_SERVICE_ID,
+      templateId: CONTACT_ENDPOINTS.EMAILJS_TEMPLATE_ID,
+      templateParams: { ...templateParams, message: '[MESSAGE CONTENT]' } // Don't log full message
+    });
+
+    const result = await emailjs.send(
       CONTACT_ENDPOINTS.EMAILJS_SERVICE_ID,
       CONTACT_ENDPOINTS.EMAILJS_TEMPLATE_ID,
       templateParams,
       CONTACT_ENDPOINTS.EMAILJS_PUBLIC_KEY
     );
 
+    console.log('EmailJS send result:', result);
+
     return {
       success: true,
-      message: 'Message sent successfully via EmailJS'
+      message: 'Message sent successfully! We\'ll get back to you within 24-48 hours.',
+      data: result
     };
   } catch (error) {
-    console.error('EmailJS error:', error);
-    throw new Error('Failed to send message via EmailJS');
+    console.error('EmailJS error details:', error);
+    
+    // Provide more specific error messages
+    if (error instanceof Error) {
+      if (error.message.includes('Invalid email')) {
+        throw new Error('Invalid email address. Please check your email and try again.');
+      } else if (error.message.includes('Service not found')) {
+        throw new Error('Email service not configured. Please contact support.');
+      } else if (error.message.includes('Template not found')) {
+        throw new Error('Email template not configured. Please contact support.');
+      }
+    }
+    
+    throw new Error(`Failed to send message via EmailJS: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 };
 
@@ -161,9 +191,14 @@ export const sendContactMessage = async (formData: ContactFormData): Promise<Con
   }
 
   // If all methods fail, return error
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const setupMessage = isDevelopment 
+    ? '\n\nTo enable email sending, please set up EmailJS:\n1. Copy env.example to .env\n2. Get EmailJS credentials from https://www.emailjs.com/\n3. Update .env with your credentials\n4. Restart the development server\n\nSee EMAILJS_SETUP.md for detailed instructions.'
+    : '';
+
   return {
     success: false,
-    message: 'Unable to send message. Please try again later or contact us directly at hello@sumano.tech'
+    message: `Unable to send message. Please try again later or contact us directly at sumanoteam@gmail.com${setupMessage}`
   };
 };
 

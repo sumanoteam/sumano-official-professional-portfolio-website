@@ -94,8 +94,9 @@ export const generateResumePDF = (member: TeamMember): void => {
       // Get skills for this row (3 skills per row)
       const rowSkills = skills.slice(row * columns, (row + 1) * columns);
       
-      // Display skills in this row
-      rowSkills.forEach((skill, colIndex) => {
+      // Display skills in this row - using for loop instead of forEach to avoid closure issues
+      for (let colIndex = 0; colIndex < rowSkills.length; colIndex++) {
+        const skill = rowSkills[colIndex];
         const x = margin + (colIndex * columnWidth);
         
         // Add bullet point
@@ -111,7 +112,7 @@ export const generateResumePDF = (member: TeamMember): void => {
           maxWidth: columnWidth - 10,
           lineHeight: 5
         });
-      });
+      }
       
       currentY += rowHeight;
     }

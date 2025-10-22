@@ -100,14 +100,33 @@ npm start
 
 ## 🔧 Configuration
 
-Environment variables can be configured in `.env` file:
+### Environment Variables
+
+Copy `env.example` to `.env` and configure the following variables:
 
 ```env
+# EmailJS Configuration (Required for contact form)
+REACT_APP_EMAILJS_SERVICE_ID=service_xxxxxxx
+REACT_APP_EMAILJS_TEMPLATE_ID=template_xxxxxxx
+REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key_here
+
+# API Configuration
 REACT_APP_API_URL=https://api.sumano.com
 REACT_APP_BASE_PATH=/portfolio
 REACT_APP_MAIN_WEBSITE_URL=https://sumano.com
+
+# Analytics (Optional)
 REACT_APP_GA_ID=your-google-analytics-id
 ```
+
+### Contact Form Setup
+
+The contact form requires EmailJS configuration to send emails to `sumanoteam@gmail.com`:
+
+1. **Quick Setup**: Follow the detailed guide in `EMAILJS_SETUP.md`
+2. **Alternative**: Use Formspree by setting `REACT_APP_FORMSPREE_ENDPOINT`
+
+**Without proper configuration, the contact form will show an error message directing users to email `sumanoteam@gmail.com` directly.**
 
 ## 🏗️ Architecture
 
@@ -129,5 +148,5 @@ Developed by the Sumano development team.
 
 ## 📞 Support
 
-For support or questions, contact us at info@sumano.com
+For support or questions, contact us at sumanoteam@gmail.com
 

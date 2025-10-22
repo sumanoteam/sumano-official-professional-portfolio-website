@@ -44,7 +44,7 @@ export const ServiceHero: React.FC = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link
-              to={ROUTES.CONTACT}
+              to={`${ROUTES.CONTACT}#contact-form`}
               className="btn-primary btn-lg"
             >
               Let's Work Together

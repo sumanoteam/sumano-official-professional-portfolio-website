@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import { Button } from '../../../components/ui/Button/Button';
+import { ServiceModal } from '../../../components/modals/ServiceModal';
+import { ServiceDetails } from '../../../constants/services';
+import { FeatureList } from '../../../components/ui/FeatureList';
 
 interface ServiceCardProps {
   id: string;
@@ -12,9 +15,10 @@ interface ServiceCardProps {
   image?: string;
   isReversed?: boolean;
   backgroundColor?: 'white' | 'gray';
+  serviceDetails?: ServiceDetails;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({
+export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({
   id,
   title,
   description,
@@ -22,9 +26,15 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   icon,
   image,
   isReversed = false,
-  backgroundColor = 'white'
+  backgroundColor = 'white',
+  serviceDetails
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const bgClass = backgroundColor === 'gray' ? 'bg-gray-50' : 'bg-white';
+
+  const handleLearnMoreClick = () => {
+    setIsModalOpen(true);
+  };
   
   return (
     <section id={id} className={`py-16 ${bgClass}`}>
@@ -46,21 +56,10 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
               {description}
             </p>
             
-                <ul className="space-y-2 text-brand-text-muted-enhanced text-enhanced-subtle">
-              {features.map((feature, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-2"
-                >
-                  <span className="text-brand-accent" aria-hidden="true">✅</span>
-                  <span>{feature}</span>
-                </motion.li>
-              ))}
-            </ul>
+            <FeatureList 
+              features={features}
+              animationDelay={0.2}
+            />
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -69,7 +68,11 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
               viewport={{ once: true }}
               className="mt-8"
             >
-              <Button variant="primary" size="md">
+              <Button 
+                variant="primary" 
+                size="md"
+                onClick={handleLearnMoreClick}
+              >
                 Learn More
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -100,6 +103,17 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             )}
           </motion.div>
         </div>
+        
+        {/* Service Modal */}
+        {serviceDetails && (
+          <ServiceModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            service={serviceDetails}
+          />
+        )}
     </section>
   );
-};
+});
+
+ServiceCard.displayName = 'ServiceCard';

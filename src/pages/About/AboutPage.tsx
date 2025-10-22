@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   CheckCircleIcon, 
@@ -19,6 +18,7 @@ import { Button } from '../../components/ui/Button/Button';
 import { HERO_BACKGROUNDS, HERO_HEIGHTS } from '../../constants/heroBackgrounds';
 import { ROUTES } from '../../constants/routes';
 import { scrollToElement } from '../../utils/scrollUtils';
+import { ResponsiveGrid } from '../../components/ui/ResponsiveGrid';
 
 // Official React Logo - Simple atom design
 const ReactLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
@@ -260,25 +260,16 @@ export const AboutPage: React.FC = () => {
               We stay at the forefront of technology, mastering the tools and frameworks that power modern applications.
             </p>
           </motion.div>
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+          <ResponsiveGrid 
+            cols={{ default: 2, sm: 3, md: 4, lg: 4, xl: 6 }}
+            gap="lg"
+            animationDelay={0.2}
+            staggerDelay={0.1}
           >
             {technologies.map((tech, index) => (
               <motion.div 
                 key={index} 
                 className="group bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-110 border border-gray-100 hover:border-brand-primary/20 relative overflow-hidden"
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1,
-                  ease: "easeOut"
-                }}
-                viewport={{ once: true }}
                 whileHover={{ 
                   y: -8,
                   transition: { duration: 0.3, ease: "easeOut" }
@@ -313,7 +304,7 @@ export const AboutPage: React.FC = () => {
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 -translate-x-full group-hover:translate-x-full"></div>
               </motion.div>
             ))}
-          </motion.div>
+          </ResponsiveGrid>
         </Container>
       </div>
         
