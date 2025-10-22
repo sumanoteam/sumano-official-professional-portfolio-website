@@ -378,10 +378,23 @@ export const AboutPage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <button className="btn-primary btn-lg">
+              <Button 
+                variant="primary" 
+                size="lg" 
+                as="a" 
+                href={`${ROUTES.CONTACT}#contact-form`}
+                className="shadow-lg hover:shadow-xl"
+              >
                 Start a Project
-              </button>
-              <Button variant="outline" size="lg" outlineColor="gold" className="shadow-lg hover:shadow-xl">
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                as="a" 
+                href={ROUTES.PORTFOLIO}
+                outlineColor="gold" 
+                className="shadow-lg hover:shadow-xl"
+              >
                 View Our Work
               </Button>
             </motion.div>
