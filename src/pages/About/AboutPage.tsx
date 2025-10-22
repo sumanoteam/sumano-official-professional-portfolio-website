@@ -18,6 +18,7 @@ import { HeroBackground } from '../../components/ui/HeroBackground';
 import { Button } from '../../components/ui/Button/Button';
 import { HERO_BACKGROUNDS, HERO_HEIGHTS } from '../../constants/heroBackgrounds';
 import { ROUTES } from '../../constants/routes';
+import { scrollToElement } from '../../utils/scrollUtils';
 
 // Official React Logo - Simple atom design
 const ReactLogo: React.FC<{ className?: string }> = ({ className = "h-8 w-8" }) => (
@@ -45,6 +46,10 @@ export const AboutPage: React.FC = () => {
     { label: 'Team Members', value: '12+' },
     { label: 'Years Experience', value: '8+' }
   ];
+
+  const handleMeetTeamClick = () => {
+    scrollToElement('our-team', 80);
+  };
 
   const values = [
     {
@@ -150,12 +155,13 @@ export const AboutPage: React.FC = () => {
               exceptional digital experiences that drive business success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to={`${ROUTES.ABOUT}#our-team`}
-                className="btn-primary btn-lg"
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={handleMeetTeamClick}
               >
                 Meet Our Team
-              </Link>
+              </Button>
               <Button variant="outline" size="lg" as="a" href={ROUTES.CONTACT} outlineColor="gold">
                 Get in Touch
               </Button>
