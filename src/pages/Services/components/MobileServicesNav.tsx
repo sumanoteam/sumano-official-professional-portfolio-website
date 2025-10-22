@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDownIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { scrollToElement } from '../../../utils/scrollUtils';
@@ -11,13 +11,13 @@ interface MobileServicesNavProps {
 export const MobileServicesNav: React.FC<MobileServicesNavProps> = ({ isOpen, onToggle }) => {
   const [activeSection, setActiveSection] = useState<string>('');
 
-  const servicesItems = [
+  const servicesItems = useMemo(() => [
     { id: 'web-development', label: 'Web Development' },
     { id: 'ui-ux-design', label: 'UI/UX Design' },
     { id: 'branding-graphics', label: 'Branding & Graphics' },
     { id: 'ai-integration', label: 'AI Integration' },
     { id: 'it-consultation', label: 'IT Consultation' }
-  ];
+  ], []);
 
   // Track active section based on scroll position
   useEffect(() => {
@@ -38,7 +38,7 @@ export const MobileServicesNav: React.FC<MobileServicesNavProps> = ({ isOpen, on
     handleScroll(); // Check initial position
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [servicesItems]);
 
   const handleServiceClick = (serviceId: string) => {
     scrollToElement(serviceId, 80);

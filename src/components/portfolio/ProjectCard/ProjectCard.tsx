@@ -4,11 +4,11 @@ import {
   CodeBracketIcon, 
   EyeIcon,
   CalendarIcon,
-  UserIcon,
-  CheckCircleIcon,
-  ClockIcon,
-  ExclamationTriangleIcon
+  UserIcon
 } from '@heroicons/react/24/outline';
+import { StatusBadge } from '../../ui/StatusBadge';
+import { FeatureList } from '../../ui/FeatureList';
+import { IconButton } from '../../ui/IconButton';
 
 interface Project {
   id: string;
@@ -31,34 +31,9 @@ interface ProjectCardProps {
   index: number;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const getStatusIcon = () => {
-    switch (project.status) {
-      case 'completed':
-        return <CheckCircleIcon className="w-5 h-5 text-green-500" />;
-      case 'in-progress':
-        return <ClockIcon className="w-5 h-5 text-yellow-500" />;
-      case 'coming-soon':
-        return <ExclamationTriangleIcon className="w-5 h-5 text-blue-500" />;
-      default:
-        return null;
-    }
-  };
-
-  const getStatusText = () => {
-    switch (project.status) {
-      case 'completed':
-        return 'Completed';
-      case 'in-progress':
-        return 'In Progress';
-      case 'coming-soon':
-        return 'Coming Soon';
-      default:
-        return '';
-    }
-  };
 
   return (
     <motion.div
@@ -83,9 +58,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         
         {/* Status Badge */}
-        <div className="absolute top-4 right-4 flex items-center space-x-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
-          {getStatusIcon()}
-          <span className="text-sm font-medium text-gray-700">{getStatusText()}</span>
+        <div className="absolute top-4 right-4">
+          <StatusBadge 
+            status={project.status as 'completed' | 'in-progress' | 'coming-soon'}
+            size="sm"
+            className="bg-white/90 backdrop-blur-sm"
+          />
         </div>
 
         {/* Category Badge */}
@@ -99,32 +77,30 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
         >
-          <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             {project.liveUrl && (
-              <motion.a
+              <IconButton
+                icon={<EyeIcon className="w-5 h-5" />}
+                label="View Live"
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-gray-900 px-4 py-2 rounded-lg font-medium flex items-center space-x-2 hover:bg-gray-100 transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <EyeIcon className="w-5 h-5" />
-                <span>View Live</span>
-              </motion.a>
+                variant="primary"
+                size="sm"
+                className="bg-white text-gray-900 hover:bg-gray-100"
+              />
             )}
             {project.githubUrl && (
-              <motion.a
+              <IconButton
+                icon={<CodeBracketIcon className="w-5 h-5" />}
+                label="Code"
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 hover:bg-gray-800 transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <CodeBracketIcon className="w-5 h-5" />
-                <span>Code</span>
-              </motion.a>
+                variant="secondary"
+                size="sm"
+                className="bg-gray-900 text-white hover:bg-gray-800"
+              />
             )}
           </div>
         </motion.div>
@@ -172,20 +148,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         </div>
 
         {/* Features Preview */}
-        <div className="space-y-1">
-          {project.features.slice(0, 3).map((feature, index) => (
-            <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-              <CheckCircleIcon className="w-4 h-4 text-green-500 flex-shrink-0" />
-              <span>{feature}</span>
-            </div>
-          ))}
-          {project.features.length > 3 && (
-            <div className="text-sm text-gray-500">
-              +{project.features.length - 3} more features
-            </div>
-          )}
-        </div>
+        <FeatureList 
+          features={project.features}
+          maxFeatures={3}
+          showMoreText="more features"
+          className="text-sm"
+        />
       </div>
     </motion.div>
   );
-};
+});
+
+ProjectCard.displayName = 'ProjectCard';

@@ -5,6 +5,7 @@ import {
   CodeBracketIcon, 
   ChatBubbleLeftRightIcon 
 } from '@heroicons/react/24/outline';
+import { WhatsAppButton } from '../../ui/WhatsAppButton';
 import { Button } from '../../ui/Button';
 import { TeamMember } from '../../../types/team';
 
@@ -146,6 +147,14 @@ export const TeamMemberProfile: React.FC<TeamMemberProfileProps> = ({
                     <ChatBubbleLeftRightIcon className="h-6 w-6" />
                   </a>
                 )}
+                {/* WhatsApp for business inquiries */}
+                <WhatsAppButton
+                  phoneNumber="+2203127212"
+                  message={`Hello! I'm interested in discussing a project with ${name}. Can we connect?`}
+                  variant="icon-only"
+                  size="md"
+                  className="text-brand-teal hover:text-brand-tealDark"
+                />
               </motion.div>
             </div>
           </div>

@@ -37,7 +37,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .ts,.tsx",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "setup-emailjs": "node setup-emailjs.js"
   },
   "eslintConfig": {
     "extends": [

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container } from '../../components/layout/Container';
 import { HeroBackground } from '../../components/ui/HeroBackground';
@@ -13,6 +13,21 @@ import {
 } from '@heroicons/react/24/outline';
 
 export const OMSPage: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      // Create mailto link to send email to sumanoteam@gmail.com
+      const subject = encodeURIComponent('OMS Early Access Request');
+      const body = encodeURIComponent(`Hello Sumano Team,\n\nI'm interested in early access to your OMS platform.\n\nEmail: ${email}\n\nPlease notify me when the platform becomes available.\n\nThank you!`);
+      const mailtoLink = `mailto:sumanoteam@gmail.com?subject=${subject}&body=${body}`;
+      window.open(mailtoLink);
+      setIsSubmitted(true);
+    }
+  };
+
   const features = [
     {
       icon: <UserGroupIcon className="h-8 w-8 text-brand-teal" />,
@@ -159,17 +174,24 @@ export const OMSPage: React.FC = () => {
               We're putting the finishing touches on our revolutionary HR management platform. 
               Sign up for updates and be notified when we launch.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-lg text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                className="flex-1 px-4 py-3 rounded-lg text-gray-900 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+                required
               />
-              <button className="btn-primary flex items-center">
-                Notify Me
+              <button 
+                type="submit"
+                className="btn-primary flex items-center justify-center"
+                disabled={!email}
+              >
+                {isSubmitted ? 'Email Opened!' : 'Notify Me'}
                 <ArrowRightIcon className="h-5 w-5 ml-2" />
               </button>
-            </div>
+            </form>
             <p className="text-sm text-white/70 mt-4">
               We respect your privacy. No spam, ever.
             </p>

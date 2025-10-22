@@ -81,15 +81,19 @@ export const CONTACT_CONTENT = {
     SUBMIT_BUTTON: "Send Message",
     SUBMITTING_BUTTON: "Sending...",
     SUCCESS_MESSAGE: "Thanks — we've received your message. A member of the Sumano team will reply within 24–48 hours.",
-    ERROR_MESSAGE: "Something went wrong. Please try again or email us at hello@sumano.tech"
+    ERROR_MESSAGE: "Something went wrong. Please try again or email us at sumanoteam@gmail.com"
   },
   
   DETAILS: {
     TITLE: "Get in touch",
     SUBTITLE: "We're here to help and answer any questions you might have.",
     INFO: {
-      EMAIL: "hello@sumano.tech",
-      PHONE: "+220 3127212 / 3234633",
+      EMAIL: "sumanoteam@gmail.com",
+      WHATSAPP: {
+        PRIMARY: "+2203127212",
+        SECONDARY: "+2203234633",
+        MESSAGE: "Hello! I'm interested in your services. Can we discuss my project?"
+      },
       ADDRESS: "Serrekunda, Banjul, The Gambia",
       HOURS: "Mon–Fri, 09:00–17:00 GMT"
     }
@@ -116,7 +120,7 @@ export const CONTACT_CONTENT = {
       },
       {
         name: "GitHub",
-        url: "https://github.com/sumano-tech",
+        url: "https://github.com/sumanoteam/sumano-official-professional-portfolio-website",
         icon: "github"
       }
     ]
